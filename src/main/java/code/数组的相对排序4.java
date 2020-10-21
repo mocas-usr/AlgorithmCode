@@ -13,10 +13,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2020-10-16 10:05
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2020-10-16 10:05
  */
 public class 数组的相对排序4 {
     Map<Integer, Integer> record;
@@ -33,58 +33,49 @@ public class 数组的相对排序4 {
     }
 
     //分割归并
-    public void mergeSort(int[] arr,int low,int high)
-    {
+    public void mergeSort(int[] arr, int low, int high) {
 
-        if (low<high)
-        {
-            int mid=(high-low)/2+low;
+        if (low < high) {
+            int mid = (high - low) / 2 + low;
             //分割
             //左边
-            mergeSort(arr,low,mid);
+            mergeSort(arr, low, mid);
             //右边
-            mergeSort(arr,mid+1,high);
+            mergeSort(arr, mid + 1, high);
             //合并
-            merge(arr,low,mid,high);
+            merge(arr, low, mid, high);
 
         }
 
     }
+
     //合并的操作
-    public void merge(int[] arr,int low,int mid,int high)
-    {
+    public void merge(int[] arr, int low, int mid, int high) {
         //指针
-        int i=low;
-        int j=mid+1;
-        int[] temp=new int[high-low+1];
-        int k=0;
+        int i = low;
+        int j = mid + 1;
+        int[] temp = new int[high - low + 1];
+        int k = 0;
         //先将较小的数放入temp
-        while (i<=mid && j<=high)
-        {
+        while (i <= mid && j <= high) {
             //
-            if (less(arr[i],arr[j]))
-            {
-                temp[k++]=arr[i++];
-            }
-            else
-            {
-                temp[k++]=arr[j++];
+            if (less(arr[i], arr[j])) {
+                temp[k++] = arr[i++];
+            } else {
+                temp[k++] = arr[j++];
             }
         }
 
         //将剩余的数直接放入
-        while(i<=mid)
-        {
-            temp[k++]=arr[i++];
+        while (i <= mid) {
+            temp[k++] = arr[i++];
         }
-        while (j<=high)
-        {
-            temp[k++]=arr[j++];
+        while (j <= high) {
+            temp[k++] = arr[j++];
         }
         //将数组赋值
-        for (int h=0;h<temp.length;h++)
-        {
-            arr[low+h]=temp[h];
+        for (int h = 0; h < temp.length; h++) {
+            arr[low + h] = temp[h];
         }
     }
 
@@ -109,7 +100,6 @@ public class 数组的相对排序4 {
     }
 
 
-
     public boolean less(int num1, int num2) {
         if (record.containsKey(num1) && record.containsKey(num2)) {
             return record.get(num1) < record.get(num2);
@@ -123,10 +113,9 @@ public class 数组的相对排序4 {
     }
 
     @Test
-    public void test()
-    {
-        int[] arr1 = {2,3,1,3,2,4,6,7,9,2,19}, arr2 = {2,1,4,3,9,6};
-        int[] arr=relativeSortArray(arr1,arr2);
+    public void test() {
+        int[] arr1 = {2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19}, arr2 = {2, 1, 4, 3, 9, 6};
+        int[] arr = relativeSortArray(arr1, arr2);
         System.out.println(Arrays.toString(arr));
     }
 

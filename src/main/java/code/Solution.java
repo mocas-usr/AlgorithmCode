@@ -14,10 +14,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2020-10-12 10:47
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2020-10-12 10:47
  */
 /*给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。
 
@@ -49,15 +49,13 @@ public class Solution {
         Deque<Integer> deque = new LinkedList<>();
         //结果集
         int[] res = new int[nums.length - k + 1];
-        int index=0;
+        int index = 0;
 
         //双向队列,队列尾j，队列头i
         //如果没出现窗口时
-        for (int h=0;h<k;h++)
-        {
+        for (int h = 0; h < k; h++) {
             //循环，使队列头最大，递减
-            while (!deque.isEmpty() && deque.peekLast()<nums[h])
-            {
+            while (!deque.isEmpty() && deque.peekLast() < nums[h]) {
                 deque.removeLast();
 
             }
@@ -66,21 +64,19 @@ public class Solution {
         }
 
         //出现窗口初始化
-        res[index++]=deque.peekFirst();
+        res[index++] = deque.peekFirst();
         //出现窗口
-        for (int i=k; i < nums.length; i++)
-        {
+        for (int i = k; i < nums.length; i++) {
             //队列长度是k，超出长度移除
-            if(deque.peekFirst() == nums[i - k])
+            if (deque.peekFirst() == nums[i - k])
                 deque.removeFirst();
             //保持队列递减，
-            while(!deque.isEmpty() && deque.peekLast()<nums[i])
-            {
+            while (!deque.isEmpty() && deque.peekLast() < nums[i]) {
                 deque.removeLast();
             }
             deque.addLast(nums[i]);
 
-            res[index++]=deque.peekFirst();
+            res[index++] = deque.peekFirst();
 
         }
         return res;
@@ -94,7 +90,8 @@ public class Solution {
         //如果新增的值小于队列尾部值，加到队列尾部
         //如果新增值大于队列尾部值，删除队列中比新增值小的值，如果在把新增值加入到队列中
         //如果新增值大于队列中所有值，删除所有，然后把新增值放到队列首位，保证队列一直是从大到小
-        if (nums.length == 0)   return nums;
+        if (nums.length == 0)
+            return nums;
 
         Deque<Integer> deque = new LinkedList<>();
         int[] arr = new int[nums.length - k + 1];
@@ -114,9 +111,11 @@ public class Solution {
         //窗口区间形成
         for (int i = k; i < nums.length; i++) {
             //i-k是已经在区间外了，如果首位等于nums[i-k]，那么说明此时首位值已经不再区间内了，需要删除
-            if (deque.peekFirst() == nums[i - k])   deque.removeFirst();
+            if (deque.peekFirst() == nums[i - k])
+                deque.removeFirst();
             //删除队列中比当前值大的值
-            while (!deque.isEmpty() && nums[i] > deque.peekLast())  deque.removeLast();
+            while (!deque.isEmpty() && nums[i] > deque.peekLast())
+                deque.removeLast();
             //把当前值添加到队列中
             deque.addLast(nums[i]);
             //把队列的首位值添加到arr数组中
@@ -126,17 +125,15 @@ public class Solution {
     }
 
 
-
-
     @Test
-    public void  Solution(){
+    public void Solution() {
 
-        Solution solution=new Solution();
+        Solution solution = new Solution();
         //定义初始化变量
-        int[] nums={1,-1};
-        int k=1;
+        int[] nums = {1, -1};
+        int k = 1;
         //准备输出调试
-        int[] result=solution.maxSlidingWindow(nums,k);
+        int[] result = solution.maxSlidingWindow(nums, k);
 
         System.out.println(Arrays.toString(result));
     }

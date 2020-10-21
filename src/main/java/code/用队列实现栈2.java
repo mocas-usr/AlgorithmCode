@@ -2,7 +2,7 @@ package code;/**
  * Created with IntelliJ IDEA
  *
  * @Author: mocas
- * @Date: 2020/10/16 下午4:39
+ * @Date: 2020/10/17 下午3:19
  * @email: wangyuhang_mocas@163.com
  */
 
@@ -13,21 +13,12 @@ import java.util.Queue;
  * @program: AlgorithmCode
  * @description:
  * @author: mocas_wang
- * @create: 2020-10-16 16:39
+ * @create: 2020-10-17 15:19
  */
-/*
-使用队列实现栈的下列操作：
+public class 用队列实现栈2 {
 
-        push(x) -- 元素 x 入栈
-        pop() -- 移除栈顶元素
-        top() -- 获取栈顶元素
-        empty() -- 返回栈是否为空
-*/
-
-public class 用队列实现栈 {
-    //两个队列实现
+    //1个队列实现
     Queue<Integer> queue1;
-    Queue<Integer> queue2;
 
     /**
      * Initialize your data structure here.
@@ -35,7 +26,6 @@ public class 用队列实现栈 {
     public void MyStack() {
         //初始化
         queue1 = new LinkedList<>();
-        queue2 = new LinkedList<>();
     }
 
     /**
@@ -43,20 +33,17 @@ public class 用队列实现栈 {
      */
     //重点内容
     public void push(int x) {
-        //q2入栈，q2作为中转栈
-        queue2.offer(x);
-        //q1出栈，入队q2
-        while (!queue1.isEmpty()) {
-            queue2.offer(queue1.poll());
+        //先获取原队列的长度
+        int n = queue1.size();
+
+        //将元素入队列
+        queue1.offer(x);
+        //再将新元素外的元素出队列，再入队列
+        while (n > 0) {
+            int t = queue1.poll();
+            queue1.offer(t);
+            n--;
         }
-        //交换que
-        Queue q = new LinkedList();
-        q = queue1;
-        queue1 = queue2;
-        queue2 = q;
-        //此时q2是空，q1是入口队列
-
-
     }
 
     /**

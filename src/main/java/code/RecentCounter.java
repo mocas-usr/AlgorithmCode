@@ -10,10 +10,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2020-10-12 10:20
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2020-10-12 10:20
  */
 /*写一个 RecentCounter 类来计算特定时间范围内最近的请求。
 
@@ -28,17 +28,18 @@ import java.util.Queue;
 public class RecentCounter {
 
     Queue<Integer> q;
-    public RecentCounter(){
+
+    public RecentCounter() {
 
         //初始化队列,队列中ping个数是0
-        q=new LinkedList<Integer>();
+        q = new LinkedList<Integer>();
 
     }
 
     public int ping(int t) {
         //每次ping，至少有1个，u=t
         q.add(t);
-        while(q.peek()<t-3000)//如果超出此刻之前的3000，则移除
+        while (q.peek() < t - 3000)//如果超出此刻之前的3000，则移除
         {
             q.poll();
         }
@@ -48,7 +49,7 @@ public class RecentCounter {
 
 }
 
-class test{
+class test {
 
     public static void main(String[] args) {
 
