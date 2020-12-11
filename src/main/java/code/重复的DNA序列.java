@@ -16,7 +16,7 @@ import java.util.*;
  *@author: mocas_wang
  *@create: 2020-10-21 09:39
  */
-public class 重复的DNA序列 {
+public class  重复的DNA序列 {
     public List<String> findRepeatedDnaSequences(String s) {
         int n=s.length();//字符串长度
         char[] str=s.toCharArray();//拆分出字符数组

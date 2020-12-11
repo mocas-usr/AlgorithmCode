@@ -34,43 +34,18 @@ public class N叉树的最大深度 {
 
 
     }
-
-    public int maxDepth2(Node root) {  //层序遍历解法
+    public int maxDepth2(Node root)
+    {
         if (root==null)
         {
             return 0;
         }
-        if (root.children==null)
+
+        int depth=1;
+        //遍历子节点
+        for (Node node:root.children)
         {
-            return 1;
-        }
-        int depth=0;
-        Queue<Node> queue= new LinkedList<>();
-        queue.add(root);
-        while (!queue.isEmpty())
-        {
-            //本层的节点数量
-            int size=queue.size();
-
-            //深度加1
-            depth++;
-
-            while (size>0)
-            {
-                //遍历本层节点
-                Node node=queue.poll();
-                //将下一层的加入
-                if (node.children!=null)
-                {
-                    for (Node node1:node.children)
-                    {
-                        queue.add(node1);
-                    }
-
-                }
-                size--;//这一层的
-            }
-
+            depth=Math.max(depth,maxDepth(node)+1);
         }
         return depth;
     }

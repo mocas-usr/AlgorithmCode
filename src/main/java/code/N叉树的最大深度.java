@@ -9,6 +9,7 @@ package code;/**
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * @program: AlgorithmCode
@@ -60,6 +61,40 @@ public class N叉树的最大深度 {
 
         }
         return maxDepth;
+    }
+
+    //queue队列求解，迭代法
+    public int maxDepth3(Node root)
+    {
+        if (root==null)
+        {
+            return 0;
+        }
+        //保存节点
+        Queue<Node> queue=new LinkedList<>();
+        queue.add(root);//加入root
+        //默认深度
+        int depth=0;
+        while (!queue.isEmpty())
+        {
+            //深度++
+            depth++;
+            int size=queue.size();//queue的深度
+            while (size>0)
+            {
+                Node temp=queue.poll();
+                //将这个node的子节点加入
+                for (Node node:temp.children)
+                {
+                    queue.add(node);
+                }
+                size--;
+            }
+
+        }
+
+        return depth;
+
     }
 }
 

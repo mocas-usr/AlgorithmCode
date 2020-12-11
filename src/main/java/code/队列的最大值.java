@@ -28,7 +28,7 @@ public class 队列的最大值 {
 
         //初始化
         public MaxQueue() {
-            //queue记录队列的数值
+            //queue记录队列的 数值
             queue=new LinkedList<>();
             //deque记录队列最大值
             deque=new LinkedList<>();

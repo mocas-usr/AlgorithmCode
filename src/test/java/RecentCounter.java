@@ -6,7 +6,11 @@
  * @email: wangyuhang_mocas@163.com
  */
 
+import org.junit.Test;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -33,5 +37,13 @@ public class RecentCounter {
         }
         return q.size();
 
+    }
+
+
+    @Test
+    public void test()
+    {
+        List<Integer> list=new ArrayList<>();
+        list.add(8);
     }
 }
