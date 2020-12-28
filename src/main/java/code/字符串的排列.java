@@ -28,6 +28,7 @@ public class 字符串的排列 {
         if(x == c.length - 1) {
             res.add(String.valueOf(c)); // 添加排列方案
             return;
+
         }
         HashSet<Character> set = new HashSet<>();
         for(int i = x; i < c.length; i++) {

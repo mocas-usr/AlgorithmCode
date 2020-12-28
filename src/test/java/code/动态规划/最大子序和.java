@@ -6,6 +6,8 @@ package code.动态规划;/**
  * @email: wangyuhang_mocas@163.com
  */
 
+import org.junit.Test;
+
 /**
  *@program: AlgorithmCode
  *@description:
@@ -33,6 +35,16 @@ public class 最大子序和 {
 
         return maxRes;
 
+
+    }
+    @Test
+    public void test()
+    {
+        String a="";
+        int[] arr1=new int[]{1,2};
+        int[] arr2=new int[]{1,2};
+        System.out.println(arr1==arr2);
+        System.out.println(arr1.equals(arr2));
 
     }
 }
