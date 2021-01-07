@@ -19,47 +19,56 @@ import java.util.List;
  *@create: 2020-11-03 16:29
  */
 public class 括号生成 {
+    //全局变量
+    List<String> res=new LinkedList<>();//返回结果
+    //存储现场变量
+    char[] str;
     public List<String> generateParenthesis(int n) {
-        //  存放结果
-        ArrayList<String> res=new ArrayList<>();
 
-        generateAll(new char[2*n],0,res);
+        str=new char[n*2];//一共有2n个括号
+        //启示搜索路径
+        dfs(0,n);//从0开始搜索,n搜索结束
         return res;
 
 
-
     }
-    public void generateAll(char[] chars, int num, ArrayList<String> res)
+
+    //搜索
+    public void dfs(int index,int n)
     {
-        //这里不能用stringbuilder，不利于回溯
-        if (chars.length==num)//当生成2*n个括号
+        //终止条件，搜索结束
+
+        if (index==2*n)
         {
-            if (valid(new String(chars)))
+            if (valid(str))
             {
-                res.add(new String(chars));
+                //如果搜索到最后一个字符
+                res.add(String.valueOf(str));
             }
-
-        }else
-        {
-            //回溯
-            chars[num]='(';
-            generateAll(chars,num+1,res);
-            chars[num]=')';
-            generateAll(chars,num+1,res);
-
+            return;
         }
+        //剪枝
+
+        //for 选择列表
+        //做选择
+        str[index]='(';
+        //下一搜索路径
+        dfs(index+1,n);
+        //恢复现场,下一选择
+        str[index]=')';
+        dfs(index+1,n);
+
     }
 
-    public boolean valid(String string)
+    public boolean valid(char[] chars)
     {
         int balance=0;
-        for (int i=0;i<string.length();i++)
+        for (char ch:chars)
         {
-            if (string.charAt(i)=='(')
+            if (ch=='(')
             {
                 balance++;
-            }
-            else if (string.charAt(i)==')')
+            }else if (ch==')')
             {
                 balance--;
             }
@@ -77,6 +86,9 @@ public class 括号生成 {
         }
 
     }
+
+    //方法2，回溯
+
 
     @Test
     public void test()
