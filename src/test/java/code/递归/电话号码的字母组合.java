@@ -48,27 +48,25 @@ public class 电话号码的字母组合 {
     //回溯搜索
     public void dfs(int index,String digits,Map phoneMap)
     {
-        //终止条件
+       //终止条件
         if (index==digits.length())
         {
             combinations.add(combination.toString());
             return;
         }
-
         //剪枝
-
-        //for 选择列表
-        char num=digits.charAt(index);//这到了第几个数字
-        String letters= (String) phoneMap.get(num);//这个数字包含的几个字符
-        //对应letter选择
-        for (int i=0;i<letters.length();i++)
+        //for 循环列表
+        char ch=digits.charAt(index);
+        String letter= (String) phoneMap.get(ch);//
+        // 做选择
+        for (int i=0;i<letter.length();i++)
         {
-            char ch=letters.charAt(i);
-            //做选择
-            combination.append(ch);
-            //下一路径搜寻
+            char c=letter.charAt(i);
+            combination.append(c);
+
             dfs(index+1,digits,phoneMap);
-            //恢复现场
+
+            // 恢复现场
             combination.deleteCharAt(combination.length()-1);
         }
 
@@ -78,7 +76,8 @@ public class 电话号码的字母组合 {
     @Test
     public void test()
     {
-        letterCombinations("23");
+        List<String> res=letterCombinations("23");
+        System.out.println(res);
     }
 
 }

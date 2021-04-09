@@ -9,54 +9,51 @@ package code.递归;/**
 import org.junit.Test;
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2020-11-03 16:08
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2020-11-03 16:08
  */
 public class 外观数列 {
     //递归
-    public  String countAndSay(int n)
-    {
-        String s="";//用来描述上一个字符串
-        StringBuilder str=new StringBuilder();//用来构建现在的字符串
+    public String countAndSay(int n) {
         //终止条件
-        if (n==1)
-        {
+        if (n == 1) {
             return "1";
         }
-        //上一个字符串
-        s=countAndSay(n-1);
-        int len=s.length();
-        int pre=0;
-        int count=0;
-        int i=0;
-        for (;i<s.length();i++)
-        {
-           //如果不相等，则更新计数
-            if(s.charAt(pre)!=s.charAt(i))
-            {//如果不相等时，更新指针
-                count=i-pre;
-                str.append(count).append(s.charAt(pre));
-                pre=i;
-
+        //for 选择列表
+        //做选择
+        String s = countAndSay(n - 1);
+        StringBuilder ans = new StringBuilder();
+        int left = 0;
+        int right = 0;
+        int i = 0;
+        for (i = 0; i < s.length(); i++) {
+            right = i;
+            if (s.charAt(left) != s.charAt(right)) {
+                int len = right - left;
+                ans.append(len).append(s.charAt(left));
+                left = right;
             }
-            //相等则更新i
+
         }
-        //如果更新到最后截止
-        if (pre!=i)
+
+        if (i!=left)
         {
-            count=i-pre;
-            str.append(count).append(s.charAt(pre));
+            int len = i - left;
+            ans.append(len).append(s.charAt(left));
         }
-        return str.toString();
+        //下一路径
+
+        //恢复现场
+        return ans.toString();
+
 
     }
 
     @Test
-    public void test()
-    {
-        String rs=countAndSay(6);
+    public void test() {
+        String rs = countAndSay(6);
         System.out.println(rs);
     }
 }

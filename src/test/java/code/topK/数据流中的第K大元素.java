@@ -6,6 +6,7 @@ package code.topK;/**
  * @email: wangyuhang_mocas@163.com
  */
 
+import org.junit.Test;
 import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.LinkedList;
@@ -13,45 +14,56 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2020-11-25 10:53
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2020-11-25 10:53
  */
 public class 数据流中的第K大元素 {
     class KthLargest {
-
-        //有序队列
+        //队首部最小
         Queue<Integer> queue;
-        int fix_k;
-        public KthLargest(int k, int[] nums) {
-            fix_k=k;
-            queue=new PriorityQueue<>(k);//k个有序队列，队伍首部最小
+        int kNum;
 
-            for (int i=0;i<nums.length;i++) {
-                add(nums[i]);
+        public KthLargest(int k, int[] nums) {
+            kNum=k;
+            queue = new PriorityQueue<>();
+            for (int num : nums) {
+                add(num);
             }
 
         }
 
         public int add(int val) {
-            //队列中已经有的元素个数
-            int len=queue.size();
-            if (len<fix_k)
+            if (queue.size()<kNum)
             {
                 queue.offer(val);
-            }else
-            {
-                if (val>queue.peek())
+            }else {
+                if (queue.peek()<val)
                 {
                     queue.poll();
                     queue.offer(val);
-                }
-            }
+                }else {
 
+                }
+
+            }
             return queue.peek();
 
         }
     }
 
+    @Test
+    public void test()
+    {
+        int[] nums={4,5,8,2};
+        KthLargest kthLargest=new KthLargest(3,nums);
+        kthLargest.add(3);   // return 4
+        kthLargest.add(5);   // return 5
+        kthLargest.add(10);  // return 5
+        kthLargest.add(9);   // return 8
+        kthLargest.add(4);   // return 8
+
+
+    }
 }

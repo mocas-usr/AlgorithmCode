@@ -9,10 +9,10 @@ package code.查找;/**
 import org.junit.Test;
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2020-11-13 09:06
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2020-11-13 09:06
  */
 public class 搜索旋转排序数组 {
     //空间复杂度o(1),时间复杂度o（n）
@@ -60,64 +60,82 @@ public class 搜索旋转排序数组 {
         return -1;
     }
 
+    //分段二分
+    public int search2(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
 
-    //分段二分查找
-    public int search2(int[] nums, int target)
-    {
-        //特殊处理
-        if (nums.length == 1) {
-            if (target == nums[0]) {
-                return 0;
-            } else {
-                return -1;
-            }
-        }
-        //分段二分
-        int left=0;
-        int right=nums.length-1;
-        while (left<=right)
-        {
-            int mid=left+(right-left)/2;
-            if (target==nums[mid])
-            {
+        int mid = 0;
+        while (left <= right) {
+            mid = left + (right - left) / 2;
+            if (target == nums[mid]) {
                 return mid;
             }
-            //mid在右半边递增上
-            if (nums[mid]<nums[right])
-            {
-                if (target>nums[mid] &&target<=nums[right])
+            //mid在左半边,right在右半边
+            if (nums[mid] > nums[right]) {
+                //[left,mid]是有序的
+                if (target >= nums[left] && nums[mid] > target) {
+                    right = mid - 1;
+                } else //[mid,right]是无序的
                 {
-                    //说明目标在左半边递增区间
-                    left=mid+1;
-                }else
+                    left = mid + 1;
+                }
+
+
+            } else if (nums[mid] < nums[right]) {
+                //[mid,right]是有序的
+                if (target > nums[mid] && target <= nums[right]) {
+                    left = mid + 1;
+                } else //[left,mid]不一定是有序的
                 {
-                    right=mid-1;
+                    right = mid - 1;
+                }
+
+            } else {
+                right--;
+            }
+        }
+        return -1;
+
+    }
+
+    //
+    public int search3(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        int mid = 0;
+
+        while (left <= right) {
+            mid = left + (right - left) / 2;
+            if (target == nums[mid]) {
+                return mid;
+            }
+            //在左半边上
+            if (target >= nums[0]) {
+                if (nums[mid] < nums[0]) {
+                    nums[mid] = Integer.MAX_VALUE;
+                }
+            } else {
+                if (nums[mid] >= nums[0]) {
+                    nums[mid] = Integer.MIN_VALUE;
                 }
             }
-            else if (nums[mid]>nums[right])//mid在左半边
-            {
-                //确定在左半边的递增区间
-                if (target<nums[mid] &&target>=nums[left])
-                {
-                    right=mid-1;
-                }
-                else
-                {
-                    left=mid+1;
-                }
-            }else{
-                //跳出右边边界
-                right--;
+            //经过以上。则保持nums[mid]<nums[right]
+            if (target < nums[mid]) {
+                right = mid - 1;
+
+            } else {
+                left = mid + 1;
             }
         }
         return -1;
     }
 
     @Test
-    public void test()
-    {
-        int[] nums={4,5,6,7,0,1,2};
-        int k=3;
-        search2(nums,3);
+    public void test() {
+        int[] nums = {4, 5, 6, 7, 0, 1, 2};
+        int k = 0;
+        int res = search2(nums, 0);
+        System.out.println(res);
     }
 }
