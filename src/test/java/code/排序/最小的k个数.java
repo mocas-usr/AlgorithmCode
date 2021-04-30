@@ -23,7 +23,7 @@ public class 最小的k个数 {
         if (k == 0 || arr.length < k) {
             return new int[0];
         }
-        //默认小顶堆，即头部最小，
+        //默认小顶堆，即头部最大，
         Queue<Integer> queue = new PriorityQueue<>((v1, v2) -> (v2 - v1));
 
         for (int num : arr) {

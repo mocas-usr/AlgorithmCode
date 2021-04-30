@@ -21,10 +21,6 @@ public class 把数组排成最小的数 {
         //
         bubbleSort(nums);
         StringBuilder str = new StringBuilder();
-        if (nums[0]==0)
-        {
-            return "0";
-        }
         for (int num : nums) {
             str.append(num);
         }
