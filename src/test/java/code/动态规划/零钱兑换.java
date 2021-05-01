@@ -1,8 +1,8 @@
-package code.字符串;/**
+package code.动态规划;/**
  * Created with IntelliJ IDEA
  *
  * @Author: mocas
- * @Date: 2021/4/29 下午7:23
+ * @Date: 2021/4/20 下午7:54
  * @email: wangyuhang_mocas@163.com
  */
 
@@ -10,7 +10,7 @@ package code.字符串;/**
  *@program: AlgorithmCode
  *@description:
  *@author: mocas_wang
- *@create: 2021-04-29 19:23
+ *@create: 2021-04-20 19:54
  */
-public class 变位词组 {
+public class 零钱兑换 {
 }

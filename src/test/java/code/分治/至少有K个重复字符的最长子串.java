@@ -1,8 +1,8 @@
-package code.位运算;/**
+package code.分治;/**
  * Created with IntelliJ IDEA
  *
  * @Author: mocas
- * @Date: 2021/4/22 下午6:45
+ * @Date: 2021/4/16 下午4:29
  * @email: wangyuhang_mocas@163.com
  */
 
@@ -10,7 +10,7 @@ package code.位运算;/**
  *@program: AlgorithmCode
  *@description:
  *@author: mocas_wang
- *@create: 2021-04-22 18:45
+ *@create: 2021-04-16 16:29
  */
-public class 整数转换 {
+public class 至少有K个重复字符的最长子串 {
 }

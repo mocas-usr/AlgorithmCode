@@ -1,8 +1,8 @@
-package code.查找;/**
+package code.链表;/**
  * Created with IntelliJ IDEA
  *
  * @Author: mocas
- * @Date: 2021/4/29 下午7:35
+ * @Date: 2021/4/17 下午5:15
  * @email: wangyuhang_mocas@163.com
  */
 
@@ -10,7 +10,7 @@ package code.查找;/**
  *@program: AlgorithmCode
  *@description:
  *@author: mocas_wang
- *@create: 2021-04-29 19:35
+ *@create: 2021-04-17 17:15
  */
-public class 寻找旋转排序数组中的最小值 {
+public class 移除重复节点 {
 }

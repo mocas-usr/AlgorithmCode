@@ -1,8 +1,8 @@
-package code.查找;/**
+package code.分治;/**
  * Created with IntelliJ IDEA
  *
  * @Author: mocas
- * @Date: 2021/4/29 下午8:12
+ * @Date: 2021/4/17 上午10:50
  * @email: wangyuhang_mocas@163.com
  */
 
@@ -10,7 +10,7 @@ package code.查找;/**
  *@program: AlgorithmCode
  *@description:
  *@author: mocas_wang
- *@create: 2021-04-29 20:12
+ *@create: 2021-04-17 10:50
  */
-public class 搜索旋转数组 {
+public class 合并K个升序链表 {
 }
