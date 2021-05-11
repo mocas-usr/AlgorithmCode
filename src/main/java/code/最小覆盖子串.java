@@ -6,15 +6,17 @@ package code;/**
  * @email: wangyuhang_mocas@163.com
  */
 
+import org.junit.Test;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-01-16 17:35
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-01-16 17:35
  */
 public class 最小覆盖子串 {
     Map<Character, Integer> ori = new HashMap<Character, Integer>();
@@ -60,6 +62,14 @@ public class 最小覆盖子串 {
             }
         }
         return true;
+    }
+
+    @Test
+    public void test() {
+        String s = "ADOBECODEBANC";
+        String t = "ABC";
+        String res = minWindow(s, t);
+        System.out.println(res);
     }
 }
 
