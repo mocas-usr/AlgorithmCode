@@ -60,6 +60,6 @@ public class 数字序列中某一位的数字 {
     public void test()
     {
         int n=3;
-        findNthDigit2(1000000000);
+        findNthDigit2(11);
     }
 }
