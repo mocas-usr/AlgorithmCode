@@ -26,7 +26,7 @@ public class 数据流中的第K大元素 {
         int kNum;
 
         public KthLargest(int k, int[] nums) {
-            kNum=k;
+            kNum = k;
             queue = new PriorityQueue<>();
             for (int num : nums) {
                 add(num);
@@ -35,15 +35,13 @@ public class 数据流中的第K大元素 {
         }
 
         public int add(int val) {
-            if (queue.size()<kNum)
-            {
+            if (queue.size() < kNum) {
                 queue.offer(val);
-            }else {
-                if (queue.peek()<val)
-                {
+            } else {
+                if (queue.peek() < val) {
                     queue.poll();
                     queue.offer(val);
-                }else {
+                } else {
 
                 }
 
@@ -54,10 +52,9 @@ public class 数据流中的第K大元素 {
     }
 
     @Test
-    public void test()
-    {
-        int[] nums={4,5,8,2};
-        KthLargest kthLargest=new KthLargest(3,nums);
+    public void test() {
+        int[] nums = {4, 5, 8, 2};
+        KthLargest kthLargest = new KthLargest(3, nums);
         kthLargest.add(3);   // return 4
         kthLargest.add(5);   // return 5
         kthLargest.add(10);  // return 5

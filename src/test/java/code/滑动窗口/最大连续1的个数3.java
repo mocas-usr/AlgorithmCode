@@ -7,10 +7,10 @@ package code.滑动窗口;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-05-31 15:47
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-05-31 15:47
  */
 public class 最大连续1的个数3 {
 }

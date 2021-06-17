@@ -7,10 +7,10 @@ package code.查找;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-05-02 15:34
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-05-02 15:34
  */
 public class 和为s的连续正数序列 {
 }

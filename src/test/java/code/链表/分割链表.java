@@ -7,10 +7,10 @@ package code.链表;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-04-17 20:29
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-04-17 20:29
  */
 public class 分割链表 {
 }

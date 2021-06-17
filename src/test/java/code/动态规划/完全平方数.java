@@ -20,21 +20,18 @@ public class 完全平方数 {
         }
         int left = 2;
         int right = num / 2;
-        int guass=0;
+        int guass = 0;
 
         while (left < right) {
             int mid = left + (right - left) / 2;
-            guass=mid*mid;
-            if (guass<num)
-            {
-                left=left+1;
+            guass = mid * mid;
+            if (guass < num) {
+                left = left + 1;
             }
-            if (guass>num)
-            {
-                right=right-1;
+            if (guass > num) {
+                right = right - 1;
             }
-            if (guass==num)
-            {
+            if (guass == num) {
                 return true;
             }
         }

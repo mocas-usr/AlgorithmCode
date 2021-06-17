@@ -38,8 +38,7 @@ public class 外观数列 {
 
         }
 
-        if (i!=left)
-        {
+        if (i != left) {
             int len = i - left;
             ans.append(len).append(s.charAt(left));
         }

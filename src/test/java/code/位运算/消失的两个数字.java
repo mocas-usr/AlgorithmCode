@@ -7,10 +7,10 @@ package code.位运算;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-05-16 10:33
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-05-16 10:33
  */
 public class 消失的两个数字 {
 }

@@ -7,10 +7,10 @@ package code.分治;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-04-17 10:50
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-04-17 10:50
  */
 public class 合并K个升序链表 {
 }

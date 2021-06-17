@@ -7,10 +7,10 @@ package code.分治;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-05-08 16:42
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-05-08 16:42
  */
 public class 数组中的逆序对 {
 }

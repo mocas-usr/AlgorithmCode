@@ -45,35 +45,32 @@ public class 丑数 {
 
         for (int i = 1; i < n; i++) {
             //dp[a]代表有a-1次乘2，
-            int n2=dp[a]*2;
-            int n3=dp[b]*3;
-            int n5=dp[c]*5;
+            int n2 = dp[a] * 2;
+            int n3 = dp[b] * 3;
+            int n5 = dp[c] * 5;
             //新的数一定是乘其中一个，则dp[i]，取最小
-            dp[i]=Math.min(Math.min(n2,n3),n5);
-            if (dp[i]==n2)
-            {
+            dp[i] = Math.min(Math.min(n2, n3), n5);
+            if (dp[i] == n2) {
                 a++;
             }
             //意思是，新的数是乘3得到，则乘3的个数增加1
-            if (dp[i]==n3)
-            {
+            if (dp[i] == n3) {
                 b++;
             }
             //如果新数可以通过乘3或者乘5得到，则都++
-            if (dp[i]==n5)
-            {
+            if (dp[i] == n5) {
                 c++;
             }
 
 
         }
-        return dp[n-1];
+        return dp[n - 1];
 
     }
+
     @Test
-    public void test()
-    {
-        int res=nthUglyNumber(10);
+    public void test() {
+        int res = nthUglyNumber(10);
         System.out.println(res);
     }
 }

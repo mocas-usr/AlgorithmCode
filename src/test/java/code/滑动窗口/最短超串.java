@@ -7,10 +7,10 @@ package code.滑动窗口;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-05-15 16:33
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-05-15 16:33
  */
 public class 最短超串 {
 }

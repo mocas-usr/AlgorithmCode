@@ -7,10 +7,10 @@ package code.堆;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-04-15 19:53
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-04-15 19:53
  */
 public class 前K个高频元素 {
 }

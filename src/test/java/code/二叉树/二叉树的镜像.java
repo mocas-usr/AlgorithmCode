@@ -42,19 +42,17 @@ public class 二叉树的镜像 {
         stack.push(node);
 
         while (!stack.isEmpty()) {
-            node=stack.pop();
-            if (node.left!=null)
-            {
+            node = stack.pop();
+            if (node.left != null) {
                 stack.push(node.left);
             }
-            if (node.right!=null)
-            {
+            if (node.right != null) {
                 stack.push(node.right);
             }
 
-            TreeNode temp=node.left;
-            node.left=node.right;
-            node.right=temp;
+            TreeNode temp = node.left;
+            node.left = node.right;
+            node.right = temp;
 
         }
         return root;

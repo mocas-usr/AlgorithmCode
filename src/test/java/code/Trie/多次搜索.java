@@ -7,10 +7,10 @@ package code.Trie;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-05-15 16:23
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-05-15 16:23
  */
 public class 多次搜索 {
 }

@@ -44,8 +44,8 @@ public class 二叉树中和为某一值的路径 {
         }
         list.add(root.val);
         sum = sum + root.val;
-        if (sum == target&&root.left==null &&root.right==null) {
-            List<Integer> relist=new LinkedList<>(list);
+        if (sum == target && root.left == null && root.right == null) {
+            List<Integer> relist = new LinkedList<>(list);
             res.add(relist);
         }
         //for循环列表
@@ -61,7 +61,7 @@ public class 二叉树中和为某一值的路径 {
         }
         //恢复现场
         list.remove(list.size() - 1);
-        sum=sum-root.val;
+        sum = sum - root.val;
 
     }
 

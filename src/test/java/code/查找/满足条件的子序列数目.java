@@ -7,10 +7,10 @@ package code.查找;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-06-13 20:48
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-06-13 20:48
  */
 public class 满足条件的子序列数目 {
 }

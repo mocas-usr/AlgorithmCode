@@ -28,7 +28,7 @@ public class 拼写单词 {
         //计数单词
         int[] num;
         for (String word : words) {
-            num=new int[26];
+            num = new int[26];
             for (int i = 0; i < word.length(); i++) {
                 char ch = word.charAt(i);
                 num[ch - 'a']++;
@@ -37,9 +37,8 @@ public class 拼写单词 {
                     break;
                 }
 
-                if (i==word.length()-1)
-                {
-                    res+=word.length();
+                if (i == word.length() - 1) {
+                    res += word.length();
                 }
             }
         }
@@ -50,9 +49,9 @@ public class 拼写单词 {
 
     @Test
     public void test() {
-        String[] words={"cat","bt","hat","tree"};
-        String chars="atach";
-       int res= countCharacters(words,chars);
+        String[] words = {"cat", "bt", "hat", "tree"};
+        String chars = "atach";
+        int res = countCharacters(words, chars);
         System.out.println(res);
     }
 }

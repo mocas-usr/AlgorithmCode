@@ -29,18 +29,17 @@ public class 最长连续序列 {
             map.put(num, num);
         }
 
-        int res=0;
+        int res = 0;
         for (int num : nums) {
-            int current=num;
+            int current = num;
 
-            while (map.containsKey(current+1))
-            {
+            while (map.containsKey(current + 1)) {
                 current++;
             }
             //num为起点，current为终点
-            map.put(num,current);
-            int len=current-num+1;
-            res=Math.max(len,res);
+            map.put(num, current);
+            int len = current - num + 1;
+            res = Math.max(len, res);
         }
         return res;
     }

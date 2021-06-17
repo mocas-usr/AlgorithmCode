@@ -4,6 +4,10 @@ package code;/**
  * @Author: mocas
  * @Date: 2021/3/2 20:22
  * @email: wangyuhang_mocas@163.com
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-03-02 20:22
  */
 
 /**
@@ -12,14 +16,16 @@ package code;/**
  *@author: mocas_wang
  *@create: 2021-03-02 20:22
  */
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+
 public class convertPgm {
 
-    public  void main(String[] args) {
+    public void main(String[] args) {
 
         BufferedImage bufferedImage;
 

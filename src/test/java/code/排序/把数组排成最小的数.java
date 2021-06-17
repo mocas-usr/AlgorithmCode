@@ -21,8 +21,7 @@ public class 把数组排成最小的数 {
         //
         bubbleSort(nums);
         StringBuilder str = new StringBuilder();
-        if (nums[0]==0)
-        {
+        if (nums[0] == 0) {
             return "0";
         }
         for (int num : nums) {
@@ -39,9 +38,8 @@ public class 把数组排成最小的数 {
         //外层控制冒泡的总个数，每排序一次确定一个最大数
         for (int i = 0; i < nums.length; i++) {
             for (int j = 0; j < nums.length - i - 1; j++)
-                if (compare(nums[j], nums[j + 1]) > 0)
-                {
-                    swap(nums,j,j+1);
+                if (compare(nums[j], nums[j + 1]) > 0) {
+                    swap(nums, j, j + 1);
 
                 }
 

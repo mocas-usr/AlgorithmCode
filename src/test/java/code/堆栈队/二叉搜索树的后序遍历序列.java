@@ -7,10 +7,10 @@ package code.堆栈队;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-04-20 19:28
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-04-20 19:28
  */
 public class 二叉搜索树的后序遍历序列 {
 }

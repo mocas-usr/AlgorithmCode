@@ -7,10 +7,10 @@ package code.背包问题;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-05-09 20:14
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-05-09 20:14
  */
 public class 单词拆分 {
 }

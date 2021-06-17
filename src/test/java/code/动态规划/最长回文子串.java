@@ -38,7 +38,7 @@ public class 最长回文子串 {
                         dp[j][i] = dp[j + 1][i - 1];
                     }
                 }
-                if (dp[j][i]&& i - j + 1 > maxLen) {
+                if (dp[j][i] && i - j + 1 > maxLen) {
                     maxLen = i - j + 1;
                     res = s.substring(j, j + maxLen);
                 }

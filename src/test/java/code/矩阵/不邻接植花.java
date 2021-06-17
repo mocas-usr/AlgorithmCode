@@ -32,8 +32,8 @@ public class 不邻接植花 {
             map.put(i, new HashSet<>());
         }
         for (int[] path : paths) {
-            map.get(path[0]-1).add(path[1]-1);
-            map.get(path[1]-1).add(path[0]-1);
+            map.get(path[0] - 1).add(path[1] - 1);
+            map.get(path[1] - 1).add(path[0] - 1);
         }
 
 
@@ -42,19 +42,18 @@ public class 不邻接植花 {
         for (int i = 0; i < n; i++) {
             //周围花的种类
             //花园颜色
-            boolean[] colors=new boolean[5];
+            boolean[] colors = new boolean[5];
 
-            for (int t:map.get(i))//adj[i]是包含了与i邻接的花园linklist
+            for (int t : map.get(i))//adj[i]是包含了与i邻接的花园linklist
             {
                 //邻接花园颜色设为true，
-                colors[answer[t]]=true;
+                colors[answer[t]] = true;
             }
 
             //寻找花色
             for (int k = 1; k < 5; k++) {
-                if (!colors[k])
-                {
-                    answer[i]=k;
+                if (!colors[k]) {
+                    answer[i] = k;
                     break;
                 }
             }

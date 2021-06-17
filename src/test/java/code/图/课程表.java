@@ -47,41 +47,36 @@ public class 课程表 {
     public boolean dfs(int index) {
 
         //终止条件
-        if (flags[index]==1)
-        {
+        if (flags[index] == 1) {
             //遇到环了，说明失败
             return false;
         }
         //剪枝
-        if (flags[index]==-1)
-        {
+        if (flags[index] == -1) {
             return true;
         }
         //for 选择列表
 
         // 当前选择
-        flags[index]=1;
+        flags[index] = 1;
         // 下一路径
-        for (Integer t:map.get(index))
-        {
-            if (!dfs(t))
-            {
+        for (Integer t : map.get(index)) {
+            if (!dfs(t)) {
                 return false;
             }
 
         }
         // 恢复现场
-        flags[index]=-1;
+        flags[index] = -1;
         return true;
 
     }
 
     @Test
-    public void test()
-    {
-       int numCourses = 2;
-       int[][] prerequisites = {{1,0}};
-        boolean res=canFinish(numCourses, prerequisites);
+    public void test() {
+        int numCourses = 2;
+        int[][] prerequisites = {{1, 0}};
+        boolean res = canFinish(numCourses, prerequisites);
         System.out.println(res);
     }
 }

@@ -25,7 +25,7 @@ public class 数组中的第K个最大元素 {
         if (nums.length < k || k == 0) {
             return -1;
         }
-        quickSort(nums, 0, nums.length - 1, k-1);
+        quickSort(nums, 0, nums.length - 1, k - 1);
         return nums[k - 1];
 
     }
@@ -53,10 +53,10 @@ public class 数组中的第K个最大元素 {
         int k = left;
         int temp = nums[left];
         while (left < right) {
-            while (left < right&&nums[right] <= temp) {
+            while (left < right && nums[right] <= temp) {
                 right--;
             }
-            while (left < right&&nums[left] >= temp) {
+            while (left < right && nums[left] >= temp) {
                 left++;
             }
             if (left < right) {
@@ -64,22 +64,21 @@ public class 数组中的第K个最大元素 {
             }
         }
         //l=r
-        swap(nums,left,k);
+        swap(nums, left, k);
         return left;
     }
 
     public void swap(int[] nums, int left, int right) {
-        int temp=nums[left];
-        nums[left]=nums[right];
-        nums[right]=temp;
+        int temp = nums[left];
+        nums[left] = nums[right];
+        nums[right] = temp;
 
     }
 
     @Test
-    public void test()
-    {
-        int[] nums={-1,2,0};
-        int res=findKthLargest(nums,2);
+    public void test() {
+        int[] nums = {-1, 2, 0};
+        int res = findKthLargest(nums, 2);
         System.out.println(res);
     }
 

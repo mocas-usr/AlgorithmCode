@@ -7,10 +7,10 @@ package code.前缀和;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-05-15 09:41
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-05-15 09:41
  */
 public class 字母与数字 {
 }

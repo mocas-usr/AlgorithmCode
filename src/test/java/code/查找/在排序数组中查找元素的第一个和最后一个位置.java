@@ -69,7 +69,7 @@ public class 在排序数组中查找元素的第一个和最后一个位置 {
     public void test() {
         int[] nums = {5, 7, 7, 8, 8, 10};
         int target = 8;
-        int[] res=searchRange(nums, target);
+        int[] res = searchRange(nums, target);
         System.out.println(res);
     }
 

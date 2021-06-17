@@ -53,7 +53,6 @@ public class 括号生成 {
     }
 
 
-
     //判断有效
     public boolean valid(char[] chars) {
         int balance = 0;
@@ -77,39 +76,35 @@ public class 括号生成 {
     }
 
     //方法2，回溯
-    List<String> ans=new LinkedList<>();
-    StringBuilder sb=new StringBuilder();
+    List<String> ans = new LinkedList<>();
+    StringBuilder sb = new StringBuilder();
+
     public List<String> generateParenthesis2(int n) {
 
-        hdfs(n,n);
+        hdfs(n, n);
         return ans;
     }
 
     //左右两边剩下的括号
-    public void hdfs(int left,int right)
-    {
+    public void hdfs(int left, int right) {
         //终止条件
-        if (left==0 &&right==0)
-        {
+        if (left == 0 && right == 0) {
             ans.add(sb.toString());
         }
         //剪枝
-        if (left>right)
-        {
+        if (left > right) {
             return;
         }
 
-        if (left>0)
-        {
+        if (left > 0) {
             sb.append('(');
-            hdfs(left-1,right);
-            sb.deleteCharAt(sb.length()-1);
+            hdfs(left - 1, right);
+            sb.deleteCharAt(sb.length() - 1);
         }
-        if (right>0)
-        {
+        if (right > 0) {
             sb.append(')');
-            hdfs(left,right-1);
-            sb.deleteCharAt(sb.length()-1);
+            hdfs(left, right - 1);
+            sb.deleteCharAt(sb.length() - 1);
         }
     }
 

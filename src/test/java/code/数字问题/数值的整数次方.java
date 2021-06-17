@@ -9,38 +9,33 @@ package code.数字问题;/**
 import org.junit.Test;
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2020-11-14 10:02
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2020-11-14 10:02
  */
 public class 数值的整数次方 {
     public double myPow(double x, int n) {
-        if(x==0)
-        {
+        if (x == 0) {
             return 0;
         }
-        if (n==0)
-        {
+        if (n == 0) {
             return 1;
         }
-        double res=1;
+        double res = 1;
         //避免达到最大值
-        long t=n;
-        if (n<0)
-        {
-            x=1/x;
-            t=-t;
+        long t = n;
+        if (n < 0) {
+            x = 1 / x;
+            t = -t;
         }
 
-        while (t>0)
-        {
-            if (t%2==1)
-            {
-                res=res*x;
+        while (t > 0) {
+            if (t % 2 == 1) {
+                res = res * x;
             }
-            t>>=1;//不停/2
-            x=x*x;
+            t >>= 1;//不停/2
+            x = x * x;
         }
         return res;
 
@@ -48,8 +43,7 @@ public class 数值的整数次方 {
     }
 
     @Test
-    public void test()
-    {
-        myPow(2.0000,-2147483648);
+    public void test() {
+        myPow(2.0000, -2147483648);
     }
 }

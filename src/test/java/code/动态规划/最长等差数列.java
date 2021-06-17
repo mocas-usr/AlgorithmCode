@@ -7,10 +7,10 @@ package code.动态规划;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-06-14 10:03
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-06-14 10:03
  */
 public class 最长等差数列 {
 }

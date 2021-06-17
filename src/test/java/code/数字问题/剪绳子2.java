@@ -49,7 +49,7 @@ public class 剪绳子2 {
             //剩余长度是4
             res = res * 4 % p;
         } else if (less == 2) {
-            res = res *3* 2 % p;
+            res = res * 3 * 2 % p;
         }
         return (int) res;
 

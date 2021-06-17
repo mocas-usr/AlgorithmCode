@@ -43,11 +43,9 @@ public class 剪绳子 {
     }
 
     public int cuttingRope(int n) {
-        if (n==2)
-        {
+        if (n == 2) {
             return 1;
-        }else if (n == 3)
-        {
+        } else if (n == 3) {
             return 2;
         }
         int t = n / 3 - 1;
@@ -55,7 +53,7 @@ public class 剪绳子 {
         //求3的t次方
         int res = (int) Math.pow(3, t);
         if (sh == 0) {
-            return res*3;
+            return res * 3;
         } else if (sh == 1) {
             return res * 4;
         } else {

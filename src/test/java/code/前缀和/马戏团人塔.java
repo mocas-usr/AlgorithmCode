@@ -7,10 +7,10 @@ package code.前缀和;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-05-15 11:00
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-05-15 11:00
  */
 public class 马戏团人塔 {
 }

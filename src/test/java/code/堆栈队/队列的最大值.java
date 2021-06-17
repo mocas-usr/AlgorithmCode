@@ -31,8 +31,7 @@ public class 队列的最大值 {
         public int max_value() {
             if (!deque.isEmpty()) {
                 return deque.peekFirst();
-            }else
-            {
+            } else {
                 return -1;
             }
 

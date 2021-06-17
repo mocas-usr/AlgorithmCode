@@ -26,17 +26,16 @@ public class 最长连续序列 {
             //初始化左右边界
             map.put(num, num);
         }
-        int res=0;
+        int res = 0;
         for (int i = 0; i < nums.length; i++) {
-            int current=nums[i];
+            int current = nums[i];
 
-            while (map.containsKey(current+1))
-            {
+            while (map.containsKey(current + 1)) {
                 current++;
             }
 
-            map.put(nums[i],current);
-            res=Math.max(res,current-nums[i]+1);
+            map.put(nums[i], current);
+            res = Math.max(res, current - nums[i] + 1);
         }
 
         return res;

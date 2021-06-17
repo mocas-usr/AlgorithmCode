@@ -7,10 +7,10 @@ package code.计数;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-05-15 10:59
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-05-15 10:59
  */
 public class 出现的次数 {
 }

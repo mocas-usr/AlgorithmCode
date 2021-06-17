@@ -69,7 +69,7 @@ public class 数组的相对排序 {
 
         int len = nums.length;
 
-        for (int gap = len / 2; gap>0; gap /= 2) {
+        for (int gap = len / 2; gap > 0; gap /= 2) {
             //插入排序
             insertSort(nums, gap);
         }
@@ -81,18 +81,16 @@ public class 数组的相对排序 {
         //外层控制步长
         for (int i = gap; i < nums.length; i++) {
             //内层控制排序的
-            int j=i-gap;
-            int temp=nums[i];
-            while (j>=0 &&compareNum(temp,nums[j])<=0)
-            {
-                nums[j+gap]=nums[j];
-                j=j-gap;
+            int j = i - gap;
+            int temp = nums[i];
+            while (j >= 0 && compareNum(temp, nums[j]) <= 0) {
+                nums[j + gap] = nums[j];
+                j = j - gap;
             }
             //结束时交换位置
-            nums[j+gap]=temp;
+            nums[j + gap] = temp;
         }
     }
-
 
 
     public int compareNum(int num1, int num2) {

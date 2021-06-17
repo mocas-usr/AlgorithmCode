@@ -7,10 +7,10 @@ package code.前缀和;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-05-14 16:41
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-05-14 16:41
  */
 public class 生存人数 {
 }

@@ -20,8 +20,7 @@ import java.util.Queue;
  */
 public class 从上到下打印二叉树2 {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        if (root==null)
-        {
+        if (root == null) {
             return new LinkedList<>();
         }
         List<List<Integer>> res = new LinkedList<>();

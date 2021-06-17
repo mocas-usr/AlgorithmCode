@@ -26,12 +26,12 @@ public class N叉树的最大深度 {
         if (root == null) {
             return 0;
         }
-        int maxDepth=1;
+        int maxDepth = 1;
         //for 循环列表
         for (Node node : root.children) {
             //当前选择
             //下一路径
-            maxDepth=Math.max(maxDepth,maxDepth(node)+1);
+            maxDepth = Math.max(maxDepth, maxDepth(node) + 1);
         }
 
 

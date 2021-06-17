@@ -7,10 +7,10 @@ package code.多线程;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2020-11-29 20:19
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2020-11-29 20:19
  */
 public class 按序打印 {
 }

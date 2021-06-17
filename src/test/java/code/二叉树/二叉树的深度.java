@@ -72,7 +72,7 @@ public class 二叉树的深度 {
         node3.right = node20;
         node20.left = node15;
         node20.right = node7;
-        int num=maxDepth2(node3);
+        int num = maxDepth2(node3);
         System.out.println(num);
 
 

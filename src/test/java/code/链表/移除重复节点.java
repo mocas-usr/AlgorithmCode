@@ -7,10 +7,10 @@ package code.链表;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-04-17 17:15
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-04-17 17:15
  */
 public class 移除重复节点 {
 }

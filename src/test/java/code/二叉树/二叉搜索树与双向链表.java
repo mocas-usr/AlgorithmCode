@@ -25,8 +25,8 @@ public class 二叉搜索树与双向链表 {
         }
         //起始搜索
         search(root);
-        head.left=cur;
-        cur.right=head;
+        head.left = cur;
+        cur.right = head;
         return head;
 
     }
@@ -41,16 +41,14 @@ public class 二叉搜索树与双向链表 {
         //for 循环列表
         //下一路径
         search(root.left);
-        if (cur==null)
-        {
-            head=root;
+        if (cur == null) {
+            head = root;
         }
-        Node pre=cur;
-        cur=root;
-        if (pre!=null)
-        {
-            pre.right=cur;
-            cur.left=pre;
+        Node pre = cur;
+        cur = root;
+        if (pre != null) {
+            pre.right = cur;
+            cur.left = pre;
         }
 
         //当前操作

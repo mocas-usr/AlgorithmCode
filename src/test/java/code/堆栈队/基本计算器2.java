@@ -7,10 +7,10 @@ package code.堆栈队;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-04-10 14:51
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-04-10 14:51
  */
 public class 基本计算器2 {
 }

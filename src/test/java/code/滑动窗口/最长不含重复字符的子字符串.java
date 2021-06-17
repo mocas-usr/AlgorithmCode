@@ -50,20 +50,18 @@ public class 最长不含重复字符的子字符串 {
     //哈希表
     public int lengthOfLongestSubstring2(String s) {
 
-        int leftIndex=-1;
-        Map<Character,Integer> map=new HashMap<>();
-        int res=0;
-        char[] str=s.toCharArray();
-        for (int i=0;i<str.length;i++)
-        {
-            char c=str[i];
-            if (map.containsKey(c))
-            {
-                leftIndex=Math.max(leftIndex,map.get(c));
+        int leftIndex = -1;
+        Map<Character, Integer> map = new HashMap<>();
+        int res = 0;
+        char[] str = s.toCharArray();
+        for (int i = 0; i < str.length; i++) {
+            char c = str[i];
+            if (map.containsKey(c)) {
+                leftIndex = Math.max(leftIndex, map.get(c));
 
             }
-            map.put(c,i);
-            res=Math.max(res,i-leftIndex);
+            map.put(c, i);
+            res = Math.max(res, i - leftIndex);
 
         }
         return res;

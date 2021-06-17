@@ -21,25 +21,24 @@ public class 找到字符串中所有字母异位词 {
 
     public List<Integer> findAnagrams(String s, String p) {
 
-        List<Integer> res=new LinkedList<>();
+        List<Integer> res = new LinkedList<>();
         //记录字符情况
-        int[] needs=new int[26];
-        int[] windows=new int[26];
+        int[] needs = new int[26];
+        int[] windows = new int[26];
         //统计字符信息个数
-        for (char c:p.toCharArray())
-        {
+        for (char c : p.toCharArray()) {
             //代表字符的个数
-            needs[c-'a']++;
+            needs[c - 'a']++;
         }
 
-        int left=0;
-        int right=0;
+        int left = 0;
+        int right = 0;
         //拆分
-        char[] charS=s.toCharArray();
-        char[] charP=p.toCharArray();
-        while (right<s.length()) {
+        char[] charS = s.toCharArray();
+        char[] charP = p.toCharArray();
+        while (right < s.length()) {
             //右边界的字符,代表字符的位置
-            int curR = charS[right]-'a';
+            int curR = charS[right] - 'a';
 
             //统计右边界的字符出现次数
             windows[curR]++;
@@ -50,8 +49,7 @@ public class 找到字符串中所有字母异位词 {
                 windows[curL]--;
             }
 
-            if (right - left == p.length()-1)
-            {
+            if (right - left == p.length() - 1) {
                 res.add(left);
             }
             //滑动窗口右边界
@@ -61,11 +59,10 @@ public class 找到字符串中所有字母异位词 {
     }
 
     @Test
-    public void test()
-    {
-        String s= "cbaebabacd";
-        String p="abc";
-        List<Integer>  res=findAnagrams(s,p);
+    public void test() {
+        String s = "cbaebabacd";
+        String p = "abc";
+        List<Integer> res = findAnagrams(s, p);
         System.out.println(res);
     }
 }

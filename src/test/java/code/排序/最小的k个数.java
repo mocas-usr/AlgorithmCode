@@ -47,7 +47,7 @@ public class 最小的k个数 {
 
     @Test
     public void test() {
-        int[] nums = {3, 2, 1,0,0,4};
+        int[] nums = {3, 2, 1, 0, 0, 4};
         int[] res = getLeastNumbers(nums, 2);
         System.out.println(res);
     }

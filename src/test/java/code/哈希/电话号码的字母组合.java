@@ -7,10 +7,10 @@ package code.哈希;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-05-02 17:15
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-05-02 17:15
  */
 public class 电话号码的字母组合 {
 }

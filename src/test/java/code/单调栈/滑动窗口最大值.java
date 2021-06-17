@@ -7,10 +7,10 @@ package code.单调栈;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-05-09 11:23
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-05-09 11:23
  */
 public class 滑动窗口最大值 {
 }

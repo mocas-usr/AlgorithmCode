@@ -26,7 +26,7 @@ public class 环绕字符串中唯一的子字符串 {
         int len = chars.length;
 
         int curLen = 1;
-        for (int i = 0; i < len ; i++) {
+        for (int i = 0; i < len; i++) {
             //这个时候是连续的和前一个
             if (i > 0 && (chars[i] - chars[i - 1] == 1 || chars[i - 1] - chars[i] == 25)) {
                 //以当前字母结尾的长度+1

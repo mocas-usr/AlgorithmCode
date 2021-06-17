@@ -21,14 +21,13 @@ public class 单词拆分 {
         HashSet<String> set = new HashSet<>(wordDict);
         int len = s.length();
         //代表截止到i的字符串是否能拆分
-        boolean[] dp = new boolean[len+1];
+        boolean[] dp = new boolean[len + 1];
         dp[0] = true;
         //拆分成0，j 还有j,i
         for (int i = 1; i <= len; i++) {
             for (int j = 0; j < i; j++) {
-                if (dp[j] && set.contains(s.substring(j,i)))
-                {
-                    dp[i]=true;
+                if (dp[j] && set.contains(s.substring(j, i))) {
+                    dp[i] = true;
                     break;
                 }
             }

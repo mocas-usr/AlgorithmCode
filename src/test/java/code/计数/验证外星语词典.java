@@ -32,14 +32,14 @@ public class 验证外星语词典 {
             for (int j = 0; j < word1.length() && j < word2.length(); j++) {
                 char ch1 = word1.charAt(j);
                 char ch2 = word2.charAt(j);
-                if (count[ch1 - 'a'] <count[ch2 - 'a']) {
+                if (count[ch1 - 'a'] < count[ch2 - 'a']) {
                     break;
                 } else if (count[ch1 - 'a'] > count[ch2 - 'a']) {
                     return false;
-                }else {
+                } else {
                     if (j == word1.length() - 1 && j < word2.length() - 1) {
                         return true;
-                    }else if (j == word2.length() - 1 && j < word1.length() - 1){
+                    } else if (j == word2.length() - 1 && j < word1.length() - 1) {
                         return false;
                     }
                 }
@@ -52,7 +52,7 @@ public class 验证外星语词典 {
 
     @Test
     public void test() {
-        String[] words = {"apple","app"};
+        String[] words = {"apple", "app"};
         String order = "abcdefghijklmnopqrstuvwxyz";
         boolean flag = isAlienSorted(words, order);
         System.out.println(flag);

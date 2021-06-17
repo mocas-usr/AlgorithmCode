@@ -28,16 +28,15 @@ public class 将有序数组转换为二叉搜索树 {
 
     public TreeNode helpTree(int[] nums, int left, int right) {
         //终止条件
-        if (left>right)
-        {
+        if (left > right) {
             return null;
         }
         //当前选择
-        int mid=left+(right-left)/2;
-        TreeNode node=new TreeNode(nums[mid]);
+        int mid = left + (right - left) / 2;
+        TreeNode node = new TreeNode(nums[mid]);
         //下一路径
-        node.left=helpTree(nums,left,mid-1);
-        node.right=helpTree(nums,mid+1,right);
+        node.left = helpTree(nums, left, mid - 1);
+        node.right = helpTree(nums, mid + 1, right);
         //恢复现场
 
         return node;

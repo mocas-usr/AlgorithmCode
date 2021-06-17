@@ -33,9 +33,9 @@ public class 搜索插入位置 {
         }
         return left;
     }
+
     @Test
-    public void test()
-    {
+    public void test() {
 
     }
 }

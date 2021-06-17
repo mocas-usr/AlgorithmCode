@@ -43,13 +43,13 @@ public class 矩阵中的路径 {
 
         //for 选择列表
         //做选择
-        char temp=board[i][j];
-        board[i][j]='.';
+        char temp = board[i][j];
+        board[i][j] = '.';
         //搜索路径
-        boolean ans=dfs(board,i,j+1,word,index+1) ||dfs(board,i+1,j,word,index+1)
-                || dfs(board,i,j-1,word,index+1) ||dfs(board,i-1,j,word,index+1);
+        boolean ans = dfs(board, i, j + 1, word, index + 1) || dfs(board, i + 1, j, word, index + 1)
+                || dfs(board, i, j - 1, word, index + 1) || dfs(board, i - 1, j, word, index + 1);
         //恢复现场
-        board[i][j]=temp;
+        board[i][j] = temp;
         return ans;
     }
 

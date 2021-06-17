@@ -7,10 +7,10 @@ package code.二叉树;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-04-19 20:10
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-04-19 20:10
  */
 public class 最小高度树 {
 }

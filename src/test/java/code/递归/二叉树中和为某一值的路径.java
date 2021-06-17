@@ -34,28 +34,24 @@ public class 二叉树中和为某一值的路径 {
 
     public void dfs(TreeNode root, int target, int total) {
         //终止条件
-        if (root==null)
-        {
+        if (root == null) {
             return;
         }
         //做选择
         list.add(root.val);
-        total=total+root.val;
-        if (total==target&&root.left==null &&root.right==null)
-        {
+        total = total + root.val;
+        if (total == target && root.left == null && root.right == null) {
             res.add(new LinkedList<>(list));
         }
         //下一路径
-        if (root.left!=null)
-        {
-            dfs(root.left,target,total);
+        if (root.left != null) {
+            dfs(root.left, target, total);
         }
-        if (root.right!=null)
-        {
-            dfs(root.right,target,total);
+        if (root.right != null) {
+            dfs(root.right, target, total);
         }
         //恢复现场
-        list.remove(list.size()-1);
+        list.remove(list.size() - 1);
 
     }
 

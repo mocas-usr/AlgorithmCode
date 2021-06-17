@@ -7,10 +7,10 @@ package code.Trie;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-05-17 20:32
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-05-17 20:32
  */
 public class 实现Trie {
 }

@@ -26,21 +26,19 @@ public class 二叉搜索树的后序遍历序列 {
             return list;
         }
 
-        TreeNode node=root;
-        TreeNode pre=null;
-        while (node!=null || !stack.isEmpty())
-        {
+        TreeNode node = root;
+        TreeNode pre = null;
+        while (node != null || !stack.isEmpty()) {
             //压入左边栈
-            while (node!=null)
-            {
+            while (node != null) {
 
                 stack.push(node);
-                node=node.left;
+                node = node.left;
             }
             //回归上一层
-            node=stack.pop();
+            node = stack.pop();
             list.add(node.val);
-            node=node.right;
+            node = node.right;
 
         }
         return list;
@@ -53,13 +51,13 @@ public class 二叉搜索树的后序遍历序列 {
         TreeNode node = root;
         TreeNode prev = null;
         List<Integer> list = new ArrayList<>();
-        while(node != null || !stack.isEmpty()) {
-            if(node != null) {
+        while (node != null || !stack.isEmpty()) {
+            if (node != null) {
                 stack.push(node);
                 node = node.left;
             } else {
                 node = stack.pop();
-                if(node.right == null || node.right == prev){
+                if (node.right == null || node.right == prev) {
                     prev = node;
                     list.add(node.val);
                     node = null;
@@ -87,7 +85,7 @@ public class 二叉搜索树的后序遍历序列 {
         node4.right = node5;
         node2.left = node1;
         node2.right = node3;
-        List<Integer> list=postorderTraversal2(node4);
+        List<Integer> list = postorderTraversal2(node4);
         System.out.println(list);
 
     }

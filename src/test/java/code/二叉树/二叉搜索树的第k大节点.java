@@ -25,21 +25,20 @@ public class 二叉搜索树的第k大节点 {
         }
         List<Integer> list = new LinkedList<>();
         searchTree(root, list);
-        int res=list.get(k-1);
+        int res = list.get(k - 1);
         return res;
 
     }
 
     public void searchTree(TreeNode root, List<Integer> list) {
         //终止条件
-        if (root==null)
-        {
+        if (root == null) {
             return;
         }
         //
-        searchTree(root.right,list);
+        searchTree(root.right, list);
         list.add(root.val);
-        searchTree(root.left,list);
+        searchTree(root.left, list);
     }
 
 

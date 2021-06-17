@@ -7,10 +7,10 @@ package code.数字问题;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2020-12-09 10:22
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2020-12-09 10:22
  */
 public class 数字序列中某一位的数字 {
 }

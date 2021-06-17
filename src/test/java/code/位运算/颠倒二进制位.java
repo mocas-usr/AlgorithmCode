@@ -20,9 +20,9 @@ public class 颠倒二进制位 {
         for (int i = 0; i < 32; i++) {
             res = res << 1;
             //末位加1
-            int t=n & 1;
+            int t = n & 1;
             res = res | t;
-            n>>=1;
+            n >>= 1;
 
 
         }
@@ -30,20 +30,17 @@ public class 颠倒二进制位 {
 
     }
 
-    public int reverseBits2(int n)
-    {
-        int res=0;
+    public int reverseBits2(int n) {
+        int res = 0;
 
-        for (int i=0;i<32;i++)
-        {
-            int t=0;
-            if ((n&1)==1)
-            {
-                t=1<<(31-i);
+        for (int i = 0; i < 32; i++) {
+            int t = 0;
+            if ((n & 1) == 1) {
+                t = 1 << (31 - i);
             }
 
-            res=res|t;
-            n>>=1;
+            res = res | t;
+            n >>= 1;
 
         }
         return res;

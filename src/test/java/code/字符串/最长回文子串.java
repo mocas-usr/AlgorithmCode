@@ -33,23 +33,20 @@ public class 最长回文子串 {
             for (int i = 0; i < j; i++) {
                 if (chars[i] != chars[j]) {
                     dp[i][j] = false;
-                }else {
-                    if (j-i<3)
-                    {
-                        dp[i][j]=true;
-                    }else
-                    {
-                        dp[i][j]=dp[i+1][j-1];
+                } else {
+                    if (j - i < 3) {
+                        dp[i][j] = true;
+                    } else {
+                        dp[i][j] = dp[i + 1][j - 1];
                     }
 
                 }
-                if (dp[i][j] && j-i+1>maxLen)
-                {
-                    begin=i;
-                    maxLen=j-i+1;
+                if (dp[i][j] && j - i + 1 > maxLen) {
+                    begin = i;
+                    maxLen = j - i + 1;
                 }
             }
         }
-        return s.substring(begin,begin+maxLen);
+        return s.substring(begin, begin + maxLen);
     }
 }

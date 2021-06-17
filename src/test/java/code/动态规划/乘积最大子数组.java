@@ -24,8 +24,8 @@ public class 乘积最大子数组 {
         int min = nums[0];
         int res = max;
         for (int i = 1; i < nums.length; i++) {
-            int maxF=max;
-            int minF=min;
+            int maxF = max;
+            int minF = min;
             max = Math.max(Math.max(maxF * nums[i], minF * nums[i]), nums[i]);
             min = Math.min(nums[i], Math.min(nums[i] * maxF, nums[i] * minF));
 
@@ -39,8 +39,8 @@ public class 乘积最大子数组 {
 
     @Test
     public void test() {
-        int[] nums={-4,-3,-2};
-        int res=maxProduct(nums);
+        int[] nums = {-4, -3, -2};
+        int res = maxProduct(nums);
         System.out.println(res);
     }
 }

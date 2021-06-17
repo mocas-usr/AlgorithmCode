@@ -28,16 +28,16 @@ public class 最长不含重复字符的子字符串 {
         char[] chars = s.toCharArray();
         Map<Character, Integer> map = new HashMap<>();
 
-        int res=0;
+        int res = 0;
         for (int i = 0; i < s.length(); i++) {
             //如果包含新重复字符，则更新边界
             char ch = s.charAt(i);
             //i+1,right之间没有
             if (map.containsKey(ch)) {
-                left=Math.max(left,map.get(ch));
+                left = Math.max(left, map.get(ch));
             }
-            map.put(ch,i);
-            res=Math.max(res,i-left);
+            map.put(ch, i);
+            res = Math.max(res, i - left);
         }
         return res;
     }

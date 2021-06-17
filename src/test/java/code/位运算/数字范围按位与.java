@@ -7,10 +7,10 @@ package code.位运算;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2021-04-15 19:16
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2021-04-15 19:16
  */
 public class 数字范围按位与 {
 }

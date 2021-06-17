@@ -30,13 +30,12 @@ public class 旋转图像 {
 
         //左右对称
         for (int[] nums : matrix) {
-            int i=0;
-            int j=nums.length-1;
-            while (i<j)
-            {
-                int temp=nums[i];
-                nums[i]=nums[j];
-                nums[j]=temp;
+            int i = 0;
+            int j = nums.length - 1;
+            while (i < j) {
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
                 i++;
                 j--;
             }

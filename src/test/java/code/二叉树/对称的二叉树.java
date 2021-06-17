@@ -26,9 +26,8 @@ public class 对称的二叉树 {
     public boolean dfs(TreeNode left, TreeNode right) {
 
         //终止条件
-        if (left==null ||right==null)
-        {
-            if (left == null&&right==null) {
+        if (left == null || right == null) {
+            if (left == null && right == null) {
                 return true;
             }
             return false;

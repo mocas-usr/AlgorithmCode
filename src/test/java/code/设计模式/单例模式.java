@@ -7,10 +7,10 @@ package code.设计模式;/**
  */
 
 /**
- *@program: AlgorithmCode
- *@description:
- *@author: mocas_wang
- *@create: 2020-11-29 19:39
+ * @program: AlgorithmCode
+ * @description:
+ * @author: mocas_wang
+ * @create: 2020-11-29 19:39
  */
 public class 单例模式 {
 }
