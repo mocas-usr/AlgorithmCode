@@ -7,6 +7,7 @@ package 剑指offer;/**
  */
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -27,6 +28,7 @@ public class 字符串的排列 {
         chars = str.toCharArray();
 
         dfs(0);
+        Collections.sort(res);
         return res;
 
 

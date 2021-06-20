@@ -13,6 +13,11 @@ package 剑指offer;/**
  *@create: 2021-06-17 14:44
  */
 public class 表示数值的字符串 {
+    public boolean isNumeric (String str) {
+        // write code here.
+        return str.matches("[+-]?\\d*\\.?\\d+|[+-]?\\d*\\.?\\d+[eE][+-]?\\d+");
+
+    }
 
 
 }

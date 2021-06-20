@@ -52,7 +52,7 @@ public class 数据流中的中位数 {
         public double findMedian() {
 
             if (A.size() != B.size()) {
-                return A.peek();
+                return (double)A.peek();
             } else {
                 double a = A.peek();
                 double b = B.peek();
