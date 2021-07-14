@@ -18,7 +18,9 @@ import java.util.Queue;
  */
 public class 队列的最大值 {
 
+    //这是队列和栈有区别
     class MaxQueue {
+
 
         Queue<Integer> queue;
         Deque<Integer> deque;
@@ -26,22 +28,23 @@ public class 队列的最大值 {
         public MaxQueue() {
             queue = new LinkedList<>();
             deque = new LinkedList<>();
+
         }
 
         public int max_value() {
-            if (!deque.isEmpty()) {
-                return deque.peekFirst();
+
+            if (!queue.isEmpty()) {
+                return deque.peek();
             } else {
                 return -1;
             }
-
-
         }
 
         public void push_back(int value) {
-
-            queue.offer(value);
-            while (!deque.isEmpty() && value >= deque.peekLast()) {
+            queue.add(value);
+            //一定要把当前val加进去
+            //清除比val小的
+            while (!deque.isEmpty() && value > deque.peekLast()) {
                 deque.pollLast();
             }
             deque.offer(value);
@@ -50,10 +53,9 @@ public class 队列的最大值 {
         public int pop_front() {
             if (!queue.isEmpty()) {
                 int num = queue.peek();
-                if (num == deque.peek()) {
+                if (num == deque.peekFirst()) {
                     deque.pollFirst();
                 }
-
                 return queue.poll();
             } else {
                 return -1;

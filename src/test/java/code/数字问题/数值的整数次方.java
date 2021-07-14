@@ -16,29 +16,26 @@ import org.junit.Test;
  */
 public class 数值的整数次方 {
     public double myPow(double x, int n) {
-        if (x == 0) {
-            return 0;
-        }
         if (n == 0) {
             return 1;
         }
-        double res = 1;
-        //避免达到最大值
-        long t = n;
-        if (n < 0) {
-            x = 1 / x;
-            t = -t;
-        }
 
-        while (t > 0) {
-            if (t % 2 == 1) {
-                res = res * x;
+        long t=n;
+        if (n < 0) {
+            t = -t;
+            x = 1 / x;
+        }
+        double res=1;
+        while (t>0)
+        {
+            if ((t&1)==1)
+            {
+                res= res*x;
             }
-            t >>= 1;//不停/2
-            x = x * x;
+            t>>=1;
+            x=x*x;
         }
         return res;
-
 
     }
 

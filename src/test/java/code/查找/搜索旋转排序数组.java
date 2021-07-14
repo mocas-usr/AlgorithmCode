@@ -24,24 +24,36 @@ public class 搜索旋转排序数组 {
                 return -1;
             }
         }
-        //
-        int index = 0;
-        //寻找转折点
-        for (int i = 0; i < nums.length - 1; i++) {
-            if (nums[i] > nums[i + 1]) {
-                index = i;
+
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (target == nums[mid]) {
+                return mid;
+            }
+            if (nums[mid] > nums[right]) {
+                //[left,mid]是有序的
+                if (target >= nums[left] && target < nums[mid]) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+
+            } else if (nums[mid] < nums[right]) {
+                //[mid,right]是有序的
+                if (target > nums[mid] && target <= nums[right]) {
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+            } else {
+                right--;
             }
         }
-        //找到分界数值
-        int max = nums[index];
-        int min = nums[index + 1];
-        if (target <= max && target >= nums[0]) {
-            return searchBinary(nums, 0, index, target);
-        } else if (target >= min && target <= nums[nums.length - 1]) {
-            return searchBinary(nums, index + 1, nums.length - 1, target);
-        } else {
-            return -1;
-        }
+        return -1;
+
 
     }
 

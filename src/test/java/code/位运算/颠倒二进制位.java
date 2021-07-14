@@ -14,20 +14,20 @@ package code.位运算;/**
  */
 public class 颠倒二进制位 {
     public int reverseBits(int n) {
-        int res = 0;
 
-        //如果末位是1
-        for (int i = 0; i < 32; i++) {
-            res = res << 1;
-            //末位加1
-            int t = n & 1;
-            res = res | t;
-            n >>= 1;
-
+        int res=0;
+        for (int i=0;i<32;i++)
+        {
+            //31次移动
+            res<<=1;
+            int t=n &1;
+            //
+            res |=t;
+            //移动
+            n>>=1;
 
         }
         return res;
-
     }
 
     public int reverseBits2(int n) {

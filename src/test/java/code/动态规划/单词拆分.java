@@ -18,13 +18,17 @@ import java.util.List;
 public class 单词拆分 {
 
     public boolean wordBreak(String s, List<String> wordDict) {
-        HashSet<String> set = new HashSet<>(wordDict);
-        int len = s.length();
-        //代表截止到i的字符串是否能拆分
-        boolean[] dp = new boolean[len + 1];
+
+        HashSet<String> set = new HashSet<>();
+
+        for (String str : wordDict) {
+            set.add(str);
+        }
+        int n = s.length();
+        //0到i个是否是可以拆分
+        boolean[] dp = new boolean[n + 1];
         dp[0] = true;
-        //拆分成0，j 还有j,i
-        for (int i = 1; i <= len; i++) {
+        for (int i = 1; i <= n; i++) {
             for (int j = 0; j < i; j++) {
                 if (dp[j] && set.contains(s.substring(j, i))) {
                     dp[i] = true;
@@ -32,8 +36,6 @@ public class 单词拆分 {
                 }
             }
         }
-        return dp[len];
-
-
+        return dp[n];
     }
 }

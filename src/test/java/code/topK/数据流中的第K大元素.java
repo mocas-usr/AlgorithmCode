@@ -21,32 +21,30 @@ import java.util.Queue;
  */
 public class 数据流中的第K大元素 {
     class KthLargest {
-        //队首部最小
+
         Queue<Integer> queue;
-        int kNum;
+        int size;
 
         public KthLargest(int k, int[] nums) {
-            kNum = k;
+            size = k;
             queue = new PriorityQueue<>();
             for (int num : nums) {
                 add(num);
             }
-
         }
 
         public int add(int val) {
-            if (queue.size() < kNum) {
-                queue.offer(val);
+
+            if (queue.size() < size) {
+                queue.add(val);
             } else {
                 if (queue.peek() < val) {
+                    queue.add(val);
                     queue.poll();
-                    queue.offer(val);
-                } else {
-
                 }
-
             }
             return queue.peek();
+
 
         }
     }

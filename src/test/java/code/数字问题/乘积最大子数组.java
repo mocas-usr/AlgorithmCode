@@ -23,19 +23,20 @@ public class 乘积最大子数组 {
         if (nums.length < 1) {
             return -1;
         }
+        //包含当前nums[i]的最大最小数值
         int maxF = nums[0];
         int minF = nums[0];
-        int ans = nums[0];
+
+        int res = nums[0];
         for (int i = 1; i < nums.length; i++) {
+            //前一位
             int max = maxF;
             int min = minF;
-
-            maxF = Math.max(nums[i], Math.max(nums[i] * min, nums[i] * max));
-            minF = Math.min(nums[i], Math.min(nums[i] * max, nums[i] * min));
-            ans = Math.max(maxF, ans);
+            maxF = Math.max(nums[i], Math.max(max * nums[i], min * nums[i]));
+            minF = Math.min(nums[i], Math.min(max * nums[i], min * nums[i]));
+            res = Math.max(maxF, res);
         }
-        return ans;
-
+        return res;
     }
 
     @Test

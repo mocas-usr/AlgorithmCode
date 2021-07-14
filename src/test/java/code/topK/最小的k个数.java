@@ -14,7 +14,7 @@ import java.util.Arrays;
  * @author: mocas_wang
  * @create: 2020-11-25 10:45
  */
-//实践各种排序算法
+//实践各种排序算法,希尔，分支，快排
 public class 最小的k个数 {
 
     public int[] getLeastNumbers(int[] arr, int k) {

@@ -18,30 +18,31 @@ public class 平衡二叉树 {
         if (root == null) {
             return true;
         }
-        //当前选择
-        boolean left = IsBalanced_Solution(root.left);
-        boolean right = IsBalanced_Solution(root.right);
-        int leftHeight = dfs(root.left);
-        int rightHeight = dfs(root.right);
-        boolean mid = false;
-        if (Math.abs(leftHeight - rightHeight) <= 1) {
-            mid = true;
-        } else {
-            mid = false;
-        }
+        //高度
+        int res=dfs(root);
         //下一路径
-        return mid && left && right;
+        return res!=-1;
 
     }
 
+    //其中出现一个不符合条件的子树，就把-1传过来
     public int dfs(TreeNode root) {
-        if (root==null)
-        {
+        if (root == null) {
             return 0;
         }
-        int depth=1;
-        int left=dfs(root.left);
-        int right=dfs(root.right);
+        int depth = 1;
+        int left = dfs(root.left);
+        if (left == -1) {
+            return -1;
+        }
+        int right = dfs(root.right);
+        if (right == -1){
+            return -1;
+        }
+        if (Math.abs(left-right)>1)
+        {
+            return -1;
+        }
         depth=Math.max(left,right)+1;
         return depth;
     }

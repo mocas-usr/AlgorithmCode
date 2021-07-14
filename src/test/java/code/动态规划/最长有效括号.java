@@ -52,28 +52,33 @@ public class 最长有效括号 {
 
     public int longestValidParentheses(String s) {
 
-        //记录位置
         Stack<Integer> stack = new Stack<>();
         stack.push(-1);
-        int max = 0;
+        char[] str = s.toCharArray();
 
+        int res = 0;
         for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '(') {
-                //记录位置
+            if (str[i] == '(') {
+                //把这个标记着
                 stack.push(i);
             } else {
+                //对应的左括号去除
                 stack.pop();
+                //如果为空，说明，是不构成有效括号的这一位
                 if (stack.isEmpty()) {
-                    //这里是无法构成括号
+                    //压入栈，
                     stack.push(i);
-                } else {
-                    int len = i - stack.peek();
-                    max = Math.max(max, len);
 
+                } else {
+
+                    //构成有效括号长度
+                    int len = i - stack.peek();
+                    res = Math.max(len, res);
                 }
             }
         }
-        return max;
+        return res;
+
     }
 
     @Test

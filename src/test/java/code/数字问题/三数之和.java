@@ -22,51 +22,51 @@ public class 三数之和 {
 
     public List<List<Integer>> threeSum(int[] nums) {
 
-        int left = 0;
-        int right = 0;
-        int n = nums.length - 1;
-        List<List<Integer>> res = new LinkedList<>();//
-        //
+        if (nums.length == 0) {
+            return new LinkedList<>();
+        }
+        List<List<Integer>> res = new LinkedList<>();
+
+
         Arrays.sort(nums);
+
+        int n = nums.length;
+        //去重是重点
         for (int i = 0; i < nums.length; i++) {
-            left = i + 1;
-            right = n;
-            //去重
+            int left = i + 1;
+            int right = n - 1;
+            //已经以这个为起点计算过了
             if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
-            List<Integer> ans;
             while (left < right) {
-                int total = nums[i] + nums[left] + nums[right];
-
-                if (total > 0) {
+                int sum = nums[left] + nums[right] + nums[i];
+                if (sum > 0) {
                     right--;
-                } else if (total < 0) {
+                } else if (sum < 0) {
                     left++;
-
                 } else {
+                    List<Integer> list = new LinkedList<>();
+                    list.add(nums[left]);
+                    list.add(nums[i]);
+                    list.add(nums[right]);
 
-                    ans = new LinkedList<>();
-                    ans.add(nums[i]);
-                    ans.add(nums[left]);
-                    ans.add(nums[right]);
-                    res.add(ans);
-
+                    res.add(new LinkedList<>(list));
+                    while (left < right && nums[right] == nums[right - 1]) {
+                        right--;
+                    }
                     while (left < right && nums[left] == nums[left + 1]) {
                         left++;
                     }
-                    while (right > left && nums[right] == nums[right - 1]) {
-                        right--;
-                    }
-                    //
-                    right--;
                     left++;
+                    right--;
                 }
-
-
             }
+
+
         }
         return res;
+
 
     }
 

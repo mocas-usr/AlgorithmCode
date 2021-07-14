@@ -14,24 +14,31 @@ package code.二叉树;/**
  */
 public class 二叉树的最近公共祖先 {
 
-    //全局变量
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         //终止条件
-        if (root == null || root == p || root == q) {
+        if (root == null) {
+            return null;
+        }
+        //剪枝
+        if (root == p || root == q)
+        {
             return root;
         }
-        //搜索路径
-        TreeNode left = lowestCommonAncestor(root.left, p, q);
-        TreeNode right = lowestCommonAncestor(root.right, p, q);
-        if (left == null) {
+        //当前选择
+        // 下一路径
+        TreeNode left=lowestCommonAncestor(root.left,p,q);
+        TreeNode right=lowestCommonAncestor(root.right,p,q);
+        if (left==null)
+        {
             return right;
         }
-        if (right == null) {
+
+        if (right==null)
+        {
             return left;
         }
+        //此时左右各一个
         return root;
-
-
     }
 
 
