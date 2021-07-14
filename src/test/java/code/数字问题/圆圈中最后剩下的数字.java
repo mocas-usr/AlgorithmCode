@@ -13,12 +13,17 @@ package code.数字问题;/**
  * @create: 2020-11-09 15:28
  */
 public class 圆圈中最后剩下的数字 {
-    public int lastRemaining(int n, int m) {
-        int res = 0;
 
-        for (int i = 2; i <= n; i++) {
-            res = (res + m) % i;
+    public int lastRemaining(int n, int m) {
+
+        //只有一个人的时候
+        int index=0;
+        for (int i=2;i<=n;i++)
+        {
+            //每次相当于那个人的位置移动m次
+            index=(index+m)%i;
         }
-        return res;
+        return index;
+
     }
 }

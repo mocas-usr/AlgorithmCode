@@ -19,28 +19,39 @@ import java.util.Map;
  */
 public class 最长连续序列 {
 
+
     public int longestConsecutive(int[] nums) {
 
-        //map记录的是以k为起点的最长
+        int maxLen = 0;
+
+        //代表左右边界
         Map<Integer, Integer> map = new HashMap<>();
 
         for (int num : nums) {
-            //默认自身长度
             map.put(num, num);
         }
 
-        int res = 0;
-        for (int num : nums) {
-            int current = num;
-
-            while (map.containsKey(current + 1)) {
-                current++;
+        for (int i = 0; i < nums.length; i++) {
+            int current = nums[i];
+            //只算最小的，其余的不算
+            if (!map.containsKey(current-1))
+            {
+                //扩增窗口
+                while (map.containsKey(current+1))
+                {
+                    current++;
+                }
+                //缩小窗口
+                map.put(nums[i],current);
+                //当前操作
+                int len=current-nums[i]+1;
+                if (len>maxLen)
+                {
+                    maxLen=len;
+                }
             }
-            //num为起点，current为终点
-            map.put(num, current);
-            int len = current - num + 1;
-            res = Math.max(len, res);
+
         }
-        return res;
+        return maxLen;
     }
 }

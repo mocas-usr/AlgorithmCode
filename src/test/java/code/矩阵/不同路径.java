@@ -15,8 +15,9 @@ package code.矩阵;/**
 public class 不同路径 {
 
     public int uniquePaths(int m, int n) {
+        //dp[i][j]为到达坐标（ij）的路径数
         int[][] dp = new int[m][n];
-        //边缘地区只有一种方式到达
+
         for (int i = 0; i < m; i++) {
             dp[i][0] = 1;
         }
@@ -29,7 +30,8 @@ public class 不同路径 {
                 dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
             }
 
-        return dp[m - 1][n - 1];
+        return dp[m-1][n-1];
+
 
     }
 }

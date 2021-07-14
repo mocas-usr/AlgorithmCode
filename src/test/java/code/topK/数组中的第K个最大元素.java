@@ -20,59 +20,58 @@ import java.util.Queue;
  */
 public class 数组中的第K个最大元素 {
 
-
+    //
     public int findKthLargest(int[] nums, int k) {
-        if (nums.length < k || k == 0) {
+        if (nums.length == 0) {
             return -1;
         }
-        quickSort(nums, 0, nums.length - 1, k - 1);
-        return nums[k - 1];
 
+        quickSort(nums, 0, nums.length - 1, k-1);
+        return nums[k-1];
     }
 
-    //
     public void quickSort(int[] nums, int left, int right, int k) {
         if (left > right) {
             return;
         }
-        int stand = partion(nums, left, right, k);
+
+        int stand = partion(nums, left, right);
+//        quickSort(nums, left, stand-1, k);
+//        quickSort(nums, stand + 1, right, k);
         if (stand > k) {
-            quickSort(nums, left, stand - 1, k);
+            quickSort(nums, left, stand-1, k);
         } else if (stand < k) {
             quickSort(nums, stand + 1, right, k);
         } else {
             return;
         }
-
-
     }
 
+    public int partion(int[] nums, int left, int right) {
+        int index = left;
+        int target = nums[left];
 
-    public int partion(int[] nums, int left, int right, int target) {
-
-        int k = left;
-        int temp = nums[left];
         while (left < right) {
-            while (left < right && nums[right] <= temp) {
+            while (left < right && nums[right] <= target) {
                 right--;
             }
-            while (left < right && nums[left] >= temp) {
+            while (left < right && nums[left] >= target) {
                 left++;
             }
             if (left < right) {
                 swap(nums, left, right);
             }
         }
-        //l=r
-        swap(nums, left, k);
+        //
+        swap(nums, left, index);
         return left;
+
     }
 
-    public void swap(int[] nums, int left, int right) {
-        int temp = nums[left];
-        nums[left] = nums[right];
-        nums[right] = temp;
-
+    public void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 
     @Test

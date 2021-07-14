@@ -17,42 +17,43 @@ import code.实现strStr;
 public class 剪绳子2 {
 
 
-    //每段长度为3
     public int cuttingRope(int n) {
+
         if (n == 2) {
             return 1;
         }
         if (n == 3) {
             return 2;
         }
-        int num = n / 3 - 1;
-        int less = n % 3;
+        if (n == 4) {
+            return 4;
+        }
+        int m = n / 3 - 1;
+        int yu = n % 3;
 
-        //求3的num次方
         long res = 1;
-        long t = 3;
+        //先求3的m次方
+        long x = 3;
         int p = 1000000007;
-        while (num > 0) {
-            //如果是奇数
-            if ((num & 1) == 1) {
-                res = res * t % p;
+
+        while (m > 0) {
+            if ((m & 1) == 1) {
+                res = res * x % p;
             }
-            t = t * t % p;
-            num >>= 1;
+            x = x * x%p;
+            m >>= 1;
         }
 
-        //剩下的部分进行处理
-        if (less == 0) {
-            //剩余长度是3
-            res = res * 3 % p;
-        } else if (less == 1) {
-            //剩余长度是4
-            res = res * 4 % p;
-        } else if (less == 2) {
+
+        if (yu == 2) {
+            //剩余长度是5
             res = res * 3 * 2 % p;
+        } else if (yu == 1) {
+            res = res * 4 % p;
+        } else {
+            res = res * 3 % p;
         }
         return (int) res;
-
 
     }
 }

@@ -20,31 +20,51 @@ import java.util.Queue;
  */
 public class 从上到下打印二叉树2 {
     public List<List<Integer>> levelOrder(TreeNode root) {
+
         if (root == null) {
             return new LinkedList<>();
         }
+
         List<List<Integer>> res = new LinkedList<>();
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
+        queue.add(root);
+        int width = 0;
         while (!queue.isEmpty()) {
-
-            int size = queue.size();
+            width++;
             List<Integer> list = new LinkedList<>();
+            int size = queue.size();
             while (size > 0) {
                 TreeNode node = queue.poll();
+                list.add(node.val);
                 if (node.left != null) {
-                    queue.offer(node.left);
+                    queue.add(node.left);
                 }
                 if (node.right != null) {
-                    queue.offer(node.right);
+                    queue.add(node.right);
                 }
-                list.add(node.val);
+
                 size--;
             }
+            if (width % 2 == 0) {
+                reverse(list);
+            }
             res.add(list);
+
         }
         return res;
+    }
 
+    public void reverse(List<Integer> list) {
+        int left = 0;
+        int right = list.size() - 1;
+
+        while (left < right) {
+            int temp = list.get(left);
+            list.set(left, list.get(right));
+            list.set(right, temp);
+            left++;
+            right--;
+        }
     }
 
     public class TreeNode {

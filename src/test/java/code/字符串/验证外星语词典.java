@@ -6,6 +6,8 @@ package code.字符串;/**
  * @email: wangyuhang_mocas@163.com
  */
 
+import org.junit.Test;
+
 /**
  * @program: AlgorithmCode
  * @description:
@@ -14,37 +16,57 @@ package code.字符串;/**
  */
 public class 验证外星语词典 {
 
-    //
     public boolean isAlienSorted(String[] words, String order) {
 
-        int[] orders = new int[26];
-        //新的排序
-        for (int i = 0; i < order.length(); i++) {
+        int[] count = new int[26];
+
+        int n = order.length();
+        for (int i = 0; i < n; i++) {
             char ch = order.charAt(i);
-            orders[ch - 'a'] = i;
+            count[ch - 'a'] = i;
         }
 
         for (int i = 0; i < words.length - 1; i++) {
-            String word1 = words[i];
-            String word2 = words[i + 1];
-            int min = Math.min(word1.length(), word2.length());
-
-            for (int j = 0; j < min; j++) {
-                if (orders[word1.charAt(j) - 'a'] > orders[word2.charAt(j) - 'a']) {
-                    return false;
-                } else if (orders[word1.charAt(j) - 'a'] < orders[word2.charAt(j) - 'a']) {
-                    //这两个单词比较结果为true
-                    break;
-                }
-                if (j == min - 1 && word1.length() > word2.length()) {
-                    return false;
-                } else {
-                    continue;
-                }
+            if (!compare(words[i], words[i + 1], count)) {
+                return false;
             }
         }
-
         return true;
+
+    }
+
+
+    public boolean compare(String w1, String w2, int[] count) {
+        //w1
+
+        for (int i = 0; i < w1.length() && i < w2.length(); i++) {
+            //w1在w2之前
+            char c1 = w1.charAt(i);
+            char c2 = w2.charAt(i);
+            if (count[c1 - 'a'] < count[c2 - 'a']) {
+                return true;
+            } else if (count[c1 - 'a'] > count[c2 - 'a']) {
+                return false;
+            } else {
+                continue;
+            }
+        }
+        //说明前面对比相等
+        if (w1.length() > w2.length()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Test
+    public void test() {
+
+        String[] words = {"my","f"};
+        String order = "gelyriwxzdupkjctbfnqmsavho";
+        boolean flag = isAlienSorted(words, order);
+        System.out.println(flag);
+
 
     }
 }

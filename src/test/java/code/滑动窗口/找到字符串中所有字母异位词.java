@@ -22,38 +22,38 @@ public class 找到字符串中所有字母异位词 {
     public List<Integer> findAnagrams(String s, String p) {
 
         List<Integer> res = new LinkedList<>();
-        //记录字符情况
+        char[] p1 = p.toCharArray();
         int[] needs = new int[26];
-        int[] windows = new int[26];
-        //统计字符信息个数
-        for (char c : p.toCharArray()) {
-            //代表字符的个数
-            needs[c - 'a']++;
+
+        //已经有的单词内容
+        for (char ch : p1) {
+            needs[ch - 'a']++;
         }
 
         int left = 0;
         int right = 0;
-        //拆分
-        char[] charS = s.toCharArray();
-        char[] charP = p.toCharArray();
-        while (right < s.length()) {
-            //右边界的字符,代表字符的位置
-            int curR = charS[right] - 'a';
+        char[] str = s.toCharArray();
+        int n = str.length;
+        int[] windows = new int[26];
 
-            //统计右边界的字符出现次数
-            windows[curR]++;
-            //如果是比原有字符的个数多，则说明不对，移动左指针
-            while (windows[curR] > needs[curR]) {
-                int curL = charS[left] - 'a';
+        while (right < n) {
+            char curR = str[right];
+            //扩增窗口
+            windows[curR - 'a']++;
+            //缩减窗口
+            while (windows[curR - 'a'] > needs[curR - 'a']) {
+                char curl=str[left];
+                windows[curl-'a']--;
                 left++;
-                windows[curL]--;
             }
-
-            if (right - left == p.length() - 1) {
+            //当前选择
+            if (right-left+1==p.length())
+            {
                 res.add(left);
             }
-            //滑动窗口右边界
+
             right++;
+
         }
         return res;
     }

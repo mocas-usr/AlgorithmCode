@@ -17,32 +17,31 @@ import org.junit.Test;
 public class 拼写单词 {
     public int countCharacters(String[] words, String chars) {
 
-        char[] chars1 = chars.toCharArray();
-        int[] chars2 = new int[26];
-        //计数chars
-        for (char ch : chars1) {
-            chars2[ch - 'a']++;
+        char[] str = chars.toCharArray();
+        int[] count = new int[26];
+        for (char ch : str) {
+            count[ch - 'a']++;
         }
-
         int res = 0;
-        //计数单词
+        boolean flag = true;
         int[] num;
         for (String word : words) {
+            flag = true;
             num = new int[26];
-            for (int i = 0; i < word.length(); i++) {
-                char ch = word.charAt(i);
-                num[ch - 'a']++;
-
-                if (num[ch - 'a'] > chars2[ch - 'a']) {
+            char[] s = word.toCharArray();
+            for (int i = 0; i < s.length; i++) {
+                if (++num[s[i] - 'a'] > count[s[i] - 'a']) {
+                    flag = false;
                     break;
                 }
 
-                if (i == word.length() - 1) {
-                    res += word.length();
-                }
+            }
+            if (flag) {
+                res += s.length;
             }
         }
         return res;
+
 
     }
 

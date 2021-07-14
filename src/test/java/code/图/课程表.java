@@ -22,54 +22,56 @@ public class 课程表 {
     Map<Integer, Set<Integer>> map = new HashMap<>();
     int[] flags;
 
+    //
     public boolean canFinish(int numCourses, int[][] prerequisites) {
 
-        //添加邻接关系
+        //建图
+        //初始化
         for (int i = 0; i < numCourses; i++) {
             map.put(i, new HashSet<>());
         }
-        for (int[] course : prerequisites) {
-            map.get(course[1]).add(course[0]);
-        }
+        for (int[] pre : prerequisites) {
+            map.get(pre[1]).add(pre[0]);
 
-        flags = new int[numCourses];
+        }
+        flags=new int[numCourses];
+
+        //查看遇到环
         for (int i = 0; i < numCourses; i++) {
+            //遇到环了
             if (!dfs(i)) {
                 return false;
             }
+
         }
         return true;
+
 
     }
 
-
-    //搜索的课程
+    //true代表没有环，false代表有环
     public boolean dfs(int index) {
-
         //终止条件
-        if (flags[index] == 1) {
-            //遇到环了，说明失败
+        if (flags[index] == 1) {//说明遇到环了
             return false;
         }
-        //剪枝
+        // 这说明已经搜索过了
         if (flags[index] == -1) {
             return true;
         }
-        //for 选择列表
-
         // 当前选择
         flags[index] = 1;
         // 下一路径
-        for (Integer t : map.get(index)) {
-            if (!dfs(t)) {
+        for (int path : map.get(index)) {
+            //遇到环了
+            if (!dfs(path)) {
                 return false;
             }
-
         }
-        // 恢复现场
-        flags[index] = -1;
-        return true;
 
+        // 恢复现场
+        flags[index]=-1;
+        return true;
     }
 
     @Test

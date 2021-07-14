@@ -18,25 +18,27 @@ public class 加一 {
 
     public int[] plusOne(int[] digits) {
 
-        int len = digits.length;
-        int[] result = new int[len + 1];
-        int plus = 1;
-        for (int i = len - 1; i >= 0; i--) {
-            int num = digits[i] + plus;
-            plus = num / 10;
-            digits[i] = num % 10;
-
-            result[i + 1] = digits[i];
-
-            if (plus == 0) {
+        int n=digits.length;
+        int[] res=new int[n+1];
+        int num=1;
+        int temp=0;
+        for (int i=n-1;i>=0;i--)
+        {
+            temp=digits[i]+num;
+            digits[i]=temp%10;
+            num=temp/10;
+            res[i+1]= digits[i];
+            if (num==0)
+            {
                 return digits;
             }
         }
-        if (plus == 1) {
-            result[0] = 1;
-            return result;
-
-        } else {
+        if (num==1)
+        {
+            res[0]=1;
+            return res;
+        }else
+        {
             return digits;
         }
 
@@ -44,7 +46,7 @@ public class 加一 {
 
     @Test
     public void test() {
-        int[] digits = {9, 9, 9};
+        int[] digits = {9};
         int[] result = plusOne(digits);
         System.out.println(result);
     }

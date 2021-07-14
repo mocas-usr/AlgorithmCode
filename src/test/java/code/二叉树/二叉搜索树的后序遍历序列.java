@@ -19,30 +19,38 @@ import java.util.*;
 public class 二叉搜索树的后序遍历序列 {
 
 
-    public List<Integer> postorderTraversal2(TreeNode root) {
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        List<Integer> list = new ArrayList<>();
-        if (root == null) {
-            return list;
+    public boolean verifyPostorder(int[] postorder) {
+        if (postorder.length == 0) {
+            return true;
         }
+        boolean res = helpTree(postorder, 0, postorder.length - 1);
+        return res;
 
-        TreeNode node = root;
-        TreeNode pre = null;
-        while (node != null || !stack.isEmpty()) {
-            //压入左边栈
-            while (node != null) {
+    }
 
-                stack.push(node);
-                node = node.left;
+    public boolean helpTree(int[] nums, int left, int right) {
+        //终止条件
+        if (left > right) {
+            return true;
+        }
+        //当前选择
+        int index=left;
+        while (index<right &&nums[index]<nums[right])
+        {
+            index++;
+        }
+        //index此时指向右子树第一个数值，大于rootval
+        for (int i=index;i<right;i++)
+        {
+            if (nums[i]<nums[right])
+            {
+                return false;
             }
-            //回归上一层
-            node = stack.pop();
-            list.add(node.val);
-            node = node.right;
-
         }
-        return list;
-
+        //下一路径
+        boolean leftTree=helpTree(nums,left,index-1);
+        boolean rightTree=helpTree(nums,index,right-1);
+        return leftTree&&rightTree;
     }
 
 
@@ -85,7 +93,7 @@ public class 二叉搜索树的后序遍历序列 {
         node4.right = node5;
         node2.left = node1;
         node2.right = node3;
-        List<Integer> list = postorderTraversal2(node4);
+        List<Integer> list = postorderTraversal(node4);
         System.out.println(list);
 
     }

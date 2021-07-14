@@ -6,6 +6,8 @@ package code.动态规划;/**
  * @email: wangyuhang_mocas@163.com
  */
 
+import org.junit.Test;
+
 /**
  * @program: AlgorithmCode
  * @description:
@@ -14,27 +16,27 @@ package code.动态规划;/**
  */
 public class 完全平方数 {
 
-    public boolean isPerfectSquare(int num) {
-        if (num < 2) {
-            return true;
-        }
-        int left = 2;
-        int right = num / 2;
-        int guass = 0;
+    public int numSquares(int n) {
 
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            guass = mid * mid;
-            if (guass < num) {
-                left = left + 1;
+        //dp[i]代表n需要的最小平方个数
+        int[] dp = new int[n + 1];
+        dp[0] = 0;
+        dp[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            dp[i] = n+1;
+            for (int j = 1; j * j <= i; j++) {
+                dp[i] = Math.min(dp[i], dp[i - j * j] + 1);
             }
-            if (guass > num) {
-                right = right - 1;
-            }
-            if (guass == num) {
-                return true;
-            }
+
         }
-        return false;
+
+
+        return dp[n];
+    }
+
+    @Test
+    public void test() {
+        int res = numSquares(2);
+        System.out.println(res);
     }
 }

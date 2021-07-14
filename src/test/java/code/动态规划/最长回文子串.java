@@ -17,35 +17,41 @@ import org.junit.Test;
 public class 最长回文子串 {
 
     public String longestPalindrome(String s) {
+        if (s.length() == 0) {
+
+            return "";
+        }
+        char[] str = s.toCharArray();
 
         int n = s.length();
+        //s[i]，到s[j]是否是回文串
         boolean[][] dp = new boolean[n][n];
-        //dp[i][j]代表i,j范围是否为回文串
-        for (int i = 0; i < n; i++) {
-            dp[i][i] = true;
-        }
-        int maxLen = 0;
-        String res = s.substring(0, 1);
-        char[] str = s.toCharArray();
+
+        int len = 1;
+        int start = 0;
         for (int i = 1; i < n; i++) {
             for (int j = 0; j < i; j++) {
-                if (str[j] != str[i]) {
+                if (str[i] != str[j]) {
+                    //说明这个[j,i]不是
                     dp[j][i] = false;
                 } else {
-                    if (i - j < 3) {
+                    if (i-j < 3) {
                         dp[j][i] = true;
                     } else {
                         dp[j][i] = dp[j + 1][i - 1];
                     }
                 }
-                if (dp[j][i] && i - j + 1 > maxLen) {
-                    maxLen = i - j + 1;
-                    res = s.substring(j, j + maxLen);
+
+                if (dp[j][i] && i-j+1>len)
+                {
+                    len=i-j+1;
+                    start=j;
                 }
+
             }
 
-
         }
+        String res=s.substring(start,start+len);
         return res;
 
 
@@ -53,7 +59,7 @@ public class 最长回文子串 {
 
     @Test
     public void test() {
-        String s = "babad";
+        String s = "aacabdkacaa";
         String res = longestPalindrome(s);
         System.out.println(res);
 

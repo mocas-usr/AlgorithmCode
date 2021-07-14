@@ -22,23 +22,21 @@ import java.util.Queue;
 public class N叉树的最大深度 {
 
     public int maxDepth(Node root) {
+
         //终止条件
-        if (root == null) {
+        if (root == null)
+        {
             return 0;
         }
-        int maxDepth = 1;
-        //for 循环列表
-        for (Node node : root.children) {
-            //当前选择
-            //下一路径
-            maxDepth = Math.max(maxDepth, maxDepth(node) + 1);
+
+        //当前选择
+        //下一路径
+        int maxDepth=1;
+        for (Node node:root.children)
+        {
+            maxDepth=Math.max(maxDepth,maxDepth(node)+1);
         }
-
-
-        //恢复现场
-
         return maxDepth;
-
     }
 
     @Test

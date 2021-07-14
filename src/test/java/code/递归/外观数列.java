@@ -15,38 +15,36 @@ import org.junit.Test;
  * @create: 2020-11-03 16:08
  */
 public class 外观数列 {
-    //递归
     public String countAndSay(int n) {
         //终止条件
         if (n == 1) {
             return "1";
         }
-        //for 选择列表
-        //做选择
+
+        //当前选择
         String s = countAndSay(n - 1);
-        StringBuilder ans = new StringBuilder();
+        char[] str = s.toCharArray();
+        //统计
         int left = 0;
         int right = 0;
-        int i = 0;
-        for (i = 0; i < s.length(); i++) {
-            right = i;
-            if (s.charAt(left) != s.charAt(right)) {
-                int len = right - left;
-                ans.append(len).append(s.charAt(left));
-                left = right;
+        StringBuilder sb = new StringBuilder();
+        while (right < s.length()) {
+            if (str[left] == str[right]) {
+                right++;
+            } else {
+
+                int count = right - left;
+                sb.append(count).append(str[left]);
+                left=right;
             }
-
         }
 
-        if (i != left) {
-            int len = i - left;
-            ans.append(len).append(s.charAt(left));
+        if (right>left)
+        {
+            int count=right-left;
+            sb.append(count).append(str[left]);
         }
-        //下一路径
-
-        //恢复现场
-        return ans.toString();
-
+        return sb.toString();
 
     }
 

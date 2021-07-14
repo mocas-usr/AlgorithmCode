@@ -19,24 +19,17 @@ public class 二进制中1的个数 {
     public int NumberOf1(int n) {
 
         int res = 0;
-        int temp=1;
-        int k = 32;
-        while (k > 0) {
 
-            if ((n&temp)!=0)
-            {
-                res++;
-            }
-            temp<<=1;
-            k--;
+        while (n != 0) {
+            n=n&(n-1);
+            res++;
         }
         return res;
     }
 
     @Test
-    public void test()
-    {
-        int res=NumberOf1(10);
+    public void test() {
+        int res = NumberOf1(10);
         System.out.println(res);
     }
 }

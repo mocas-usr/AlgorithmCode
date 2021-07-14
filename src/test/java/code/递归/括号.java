@@ -18,55 +18,44 @@ import java.util.List;
  * @create: 2021-01-04 20:04
  */
 public class 括号 {
-    //方法2，回溯
     //全局变量
-    List<String> res = new LinkedList<>();//结果存放
-    StringBuilder str;
+    List<String> res = new LinkedList<>();
+    StringBuilder sb = new StringBuilder();
 
     public List<String> generateParenthesis(int n) {
-        str = new StringBuilder();//返回现场变量
-        //左右两边的括号剩余数量
-        int left = n;
-        int right = n;
-        //起始搜索路径
-        hdfs(left, right);
 
+        if (n == 0) {
+            return new LinkedList<>();
+        }
+        //n代表剩余左右括号个数
+        hdfs(n, n);
         return res;
-
-
     }
 
-    //搜索
     public void hdfs(int left, int right) {
         //终止条件
         if (left == 0 && right == 0) {
-            res.add(str.toString());
+            res.add(sb.toString());
             return;
         }
         //剪枝
-        //如果
         if (left > right) {
             return;
         }
-
-        //for 选择列表
-        //两种选择
-        //if其实变相剪枝
+        //当前选择
         if (left > 0) {
-            str.append("(");
+
+            sb.append("(");
             hdfs(left - 1, right);
-            //恢复现场
-            str.deleteCharAt(str.length() - 1);
+            sb.deleteCharAt(sb.length() - 1);
         }
         if (right > 0) {
-            str.append(")");
+            sb.append(")");
             hdfs(left, right - 1);
-            //恢复现场
-            str.deleteCharAt(str.length() - 1);
-
+            sb.deleteCharAt(sb.length() - 1);
         }
 
-
+        //下一路径
     }
 
 

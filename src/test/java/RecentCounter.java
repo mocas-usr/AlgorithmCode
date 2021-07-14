@@ -19,6 +19,14 @@ import java.util.Queue;
  *@author: mocas_wang
  *@create: 2020-10-12 10:28
  */
+
+/*5 13
+. . . . . . . . H . . . #
+. . . . . . . . # . . . .
+. . . . . # . . . . . . .
+. # . . . . . . . . . . .
+. . . . . . . . . . T # .
+        */
 public class RecentCounter {
     Queue<Integer> q;
     public RecentCounter(){

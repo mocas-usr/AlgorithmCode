@@ -17,29 +17,24 @@ import org.junit.Test;
 public class 将有序数组转换为二叉搜索树 {
 
     public TreeNode sortedArrayToBST(int[] nums) {
-
         if (nums.length == 0) {
             return null;
         }
 
-        return helpTree(nums, 0, nums.length - 1);
+        TreeNode root = helpTree(nums, 0, nums.length - 1);
+        return root;
 
     }
 
     public TreeNode helpTree(int[] nums, int left, int right) {
-        //终止条件
         if (left > right) {
             return null;
         }
-        //当前选择
         int mid = left + (right - left) / 2;
-        TreeNode node = new TreeNode(nums[mid]);
-        //下一路径
-        node.left = helpTree(nums, left, mid - 1);
-        node.right = helpTree(nums, mid + 1, right);
-        //恢复现场
-
-        return node;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = helpTree(nums, left, mid - 1);
+        root.right = helpTree(nums, mid + 1, right);
+        return root;
     }
 
     @Test

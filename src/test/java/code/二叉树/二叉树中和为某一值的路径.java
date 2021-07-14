@@ -20,49 +20,38 @@ import java.util.List;
  * @create: 2020-12-11 20:18
  */
 public class 二叉树中和为某一值的路径 {
+
     //全局变量
     List<List<Integer>> res = new LinkedList<>();
     List<Integer> list = new LinkedList<>();
-    int sum;
 
     public List<List<Integer>> pathSum(TreeNode root, int target) {
         if (root == null) {
             return new LinkedList<>();
         }
-        //起始搜索
-        sum = 0;
-        dfs(root, target);
-        return res;
 
+        dfs(root, target, 0);
+        return res;
 
     }
 
-    public void dfs(TreeNode root, int target) {
+    public void dfs(TreeNode root, int target, int sum) {
         //终止条件
         if (root == null) {
             return;
         }
-        list.add(root.val);
-        sum = sum + root.val;
-        if (sum == target && root.left == null && root.right == null) {
-            List<Integer> relist = new LinkedList<>(list);
-            res.add(relist);
-        }
-        //for循环列表
-        if (root.left != null) {
-
-            dfs(root.left, target);
-        }
-
         //当前选择
-        //下一路径
-        if (root.right != null) {
-            dfs(root.right, target);
+        sum += root.val;
+        list.add(root.val);
+        if (sum == target &&root.left == null && root.right == null) {
+            res.add(new LinkedList<>(list));
         }
+        //下一路径
+        dfs(root.left, target, sum);
+        dfs(root.right, target, sum);
         //恢复现场
+        sum -= root.val;
         list.remove(list.size() - 1);
-        sum = sum - root.val;
-
     }
 
     @Test

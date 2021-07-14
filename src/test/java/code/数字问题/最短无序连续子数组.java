@@ -32,6 +32,7 @@ public class 最短无序连续子数组 {
         for (int i = nums.length - 2; i >= 0; i--) {
             if (nums[i] <= min) {
                 min = nums[i];
+
             } else {
                 begin = i;
             }

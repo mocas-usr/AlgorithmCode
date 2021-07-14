@@ -6,6 +6,10 @@ package code.矩阵;/**
  * @email: wangyuhang_mocas@163.com
  */
 
+import org.junit.Test;
+
+import java.util.Arrays;
+
 /**
  * @program: AlgorithmCode
  * @description:
@@ -16,33 +20,30 @@ public class 旋转图像 {
 
     public void rotate(int[][] matrix) {
 
-
         int m = matrix.length;
         int n = matrix[0].length;
-        //中心对称
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < i; j++) {
+        //左上右下旋转
+        for (int i = 0; i < m; i++)
+            for (int j = i; j < n; j++) {
                 int temp = matrix[i][j];
                 matrix[i][j] = matrix[j][i];
                 matrix[j][i] = temp;
             }
-        }
-
-        //左右对称
-        for (int[] nums : matrix) {
-            int i = 0;
-            int j = nums.length - 1;
-            while (i < j) {
-                int temp = nums[i];
-                nums[i] = nums[j];
-                nums[j] = temp;
-                i++;
-                j--;
+        //中心线对称
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n/2; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[i][n-1-j];
+                matrix[i][n-1-j] = temp;
             }
-        }
-
         return;
+    }
 
-
+    @Test
+    public void test()
+    {
+        int [][]matrix = {{1,2,3},{4,5,6},{7,8,9}};
+        rotate(matrix);
+        System.out.println(Arrays.deepToString(matrix));
     }
 }

@@ -17,43 +17,72 @@ import org.junit.Test;
 public class 验证外星语词典 {
     public boolean isAlienSorted(String[] words, String order) {
 
-        boolean flag = false;
-        int[] count = new int[order.length()];
-        //英文字典排序
-        for (int i = 0; i < order.length(); i++) {
-            char ch = order.charAt(i);
-            count[ch - 'a'] = i;
+        int n = order.length();
+        int[] count = new int[n];
+        //字典顺序
+        char[] chars = order.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            //顺序
+            count[chars[i] - 'a'] = i;
+
         }
 
-        //排序
+
         for (int i = 0; i < words.length - 1; i++) {
-            String word1 = words[i];
-            String word2 = words[i + 1];
-            for (int j = 0; j < word1.length() && j < word2.length(); j++) {
-                char ch1 = word1.charAt(j);
-                char ch2 = word2.charAt(j);
-                if (count[ch1 - 'a'] < count[ch2 - 'a']) {
-                    break;
-                } else if (count[ch1 - 'a'] > count[ch2 - 'a']) {
-                    return false;
-                } else {
-                    if (j == word1.length() - 1 && j < word2.length() - 1) {
-                        return true;
-                    } else if (j == word2.length() - 1 && j < word1.length() - 1) {
-                        return false;
-                    }
-                }
+            char[] s1 = words[i].toCharArray();
+            char[] s2 = words[i + 1].toCharArray();
+            boolean flag = compare(s1, s2, count);
+            if (!flag) {
+                return false;
             }
+
         }
         return true;
 
 
     }
 
+    public boolean compare(char[] s1, char[] s2, int[] count) {
+
+        int flag = 0;
+        for (int i = 0; i < s1.length && i < s2.length; i++) {
+            if (count[s1[i] - 'a'] > count[s2[i] - 'a']) {
+                //说明s1在s2之后
+                flag = -1;
+                break;
+            }else if (count[s1[i] - 'a'] < count[s2[i] - 'a'])
+            {
+                //s1在s2之前
+                flag = 1;
+                break;
+
+            }else
+            {
+                continue;
+            }
+        }
+
+        if (flag==0) {
+
+            if (s1.length > s2.length) {
+                //s1在s2之后
+                return false;
+            } else {
+                return true;
+            }
+
+        } else {
+
+            return flag>0?true:false;
+        }
+
+    }
+
     @Test
     public void test() {
-        String[] words = {"apple", "app"};
-        String order = "abcdefghijklmnopqrstuvwxyz";
+
+        String[] words = {"my","f"};
+        String order = "gelyriwxzdupkjctbfnqmsavho";
         boolean flag = isAlienSorted(words, order);
         System.out.println(flag);
 

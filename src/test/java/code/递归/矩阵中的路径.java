@@ -14,14 +14,17 @@ package code.递归;/**
  */
 public class 矩阵中的路径 {
 
+    boolean[][] visit;
 
     public boolean exist(char[][] board, String word) {
 
-        boolean flag = false;
+
+        visit = new boolean[board.length][board[0].length];
+
+        char[] words = word.toCharArray();
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                flag = dfs(board, word, i, j, 0);
-                if (flag) {
+                if (dfs(board, words, i, j, 0)) {
                     return true;
                 }
             }
@@ -30,32 +33,30 @@ public class 矩阵中的路径 {
 
     }
 
-    public boolean dfs(char[][] board, String word, int i, int j, int index) {
+    public boolean dfs(char[][] board, char[] words, int i, int j, int index) {
         //终止条件
-        if (index == word.length()) {
+        if (index==words.length)
+        {
             return true;
         }
+        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || board[i][j]!=words[index]) {
+            return false;
+        }
         //剪枝
-        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length) {
+        if (visit[i][j]) {
             return false;
         }
-        if (word.charAt(index) != board[i][j]) {
-            return false;
-        } else {
-            //做选择
-            char temp = board[i][j];
-            board[i][j] = '.';
-            //下一路径
-            boolean ans = dfs(board, word, i + 1, j, index + 1) || dfs(board, word, i - 1, j, index + 1)
-                    || dfs(board, word, i, j - 1, index + 1) || dfs(board, word, i, j + 1, index + 1);
 
-            //恢复现场
+        //当前选择
+        visit[i][j]=true;
+        boolean res=dfs(board,words,i+1,j,index+1) || dfs(board,words,i,j+1,index+1)
+                || dfs(board,words,i-1,j,index+1) || dfs(board,words,i,j-1,index+1);
 
-            board[i][j] = temp;
-            return ans;
-        }
+        visit[i][j]=false;
 
+        return res;
     }
+
 
 
 }

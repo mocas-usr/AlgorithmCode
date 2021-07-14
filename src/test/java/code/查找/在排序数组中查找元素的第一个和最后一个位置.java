@@ -16,53 +16,52 @@ import org.junit.Test;
  */
 public class 在排序数组中查找元素的第一个和最后一个位置 {
 
-    //二分逼近
     public int[] searchRange(int[] nums, int target) {
-        //
+        if (nums.length == 0) {
+            return new int[]{-1,-1};
+        }
+
+        int n = nums.length;
         int left = 0;
-        int right = nums.length - 1;
-        int leftIndex = -1;
-        int rightIndex = -1;
-        boolean flag = false;
+        int right = n - 1;
         int mid = 0;
-        //左边界
+        boolean flag = false;
         while (left <= right) {
-            //二分
             mid = left + (right - left) / 2;
-            //先找左边界
+            if (nums[mid] > target) {
+                right = mid - 1;
+            } else if (nums[mid] < target) {
+                left = mid +1;
+            } else {
+                flag=true;
+                right--;
+            }
+        }
+        int leftIndex=-1;
+        if (flag)
+        {
+            leftIndex=left;
+        }else
+        {
+            return new int[]{-1,-1};
+        }
+
+        left=0;
+        right=n-1;
+        while (left<=right)
+        {
+            mid=left+(right-left)/2;
             if (nums[mid] > target) {
                 right = mid - 1;
             } else if (nums[mid] < target) {
                 left = mid + 1;
-            } else if (nums[mid] == target) {
-                flag = true;
-                right = mid - 1;
+            } else {
+                left++;
             }
-
         }
-        if (!flag) {
-            return new int[]{-1, -1};
-        } else {
-            leftIndex = left;
-        }
+        int rightIndex=right;
+        return new int[]{leftIndex,rightIndex};
 
-        left = 0;
-        right = nums.length - 1;
-        while (left <= right) {
-            //二分
-            mid = left + (right - left) / 2;
-            if (nums[mid] > target) {
-
-                right = mid - 1;
-            } else if (nums[mid] < target) {
-                left = mid + 1;
-            } else if (nums[mid] == target) {
-                left = left + 1;
-            }
-
-        }
-        rightIndex = right;
-        return new int[]{leftIndex, rightIndex};
     }
 
     @Test

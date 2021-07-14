@@ -18,43 +18,54 @@ import java.util.Arrays;
 public class 最小的k个数 {
 
     public int[] getLeastNumbers(int[] arr, int k) {
-        if (k == 0 || arr.length < k)
+        if (arr.length == 0 || k == 0) {
             return new int[0];
+        }
         quickSort(arr, 0, arr.length - 1, k);
-        return Arrays.copyOf(arr, k);
+        int[] res = new int[k];
+        for (int i = 0; i < k; i++) {
+            res[i] = arr[i];
+        }
+        return res;
     }
 
-    public void quickSort(int[] nums, int left, int right, int k) {
+    public void quickSort(int[] arr, int left, int right, int k) {
         if (left > right) {
             return;
         }
-        int stand = partion(nums, left, right, k);
-        if (stand == k) {
-            return;
-        } else if (stand > k) {
-            quickSort(nums, left, stand - 1, k);
+
+        int stand = partion(arr, left, right);
+        if (stand > k) {
+            quickSort(arr, left, stand-1, k);
+        } else if (stand < k) {
+            quickSort(arr, stand + 1, right, k);
         } else {
-            quickSort(nums, stand + 1, right, k);
+            return;
         }
+
     }
 
-    public int partion(int[] nums, int left, int right, int k) {
-        int one = left;
-        int temp = nums[left];
-        while (left < right) {
-            while (left < right && nums[right] >= temp) {
-                right--;
+    public int partion(int[] nums, int left, int right) {
 
+        int index = left;
+        int target = nums[left];
+
+        while (left < right) {
+
+            while (left < right && nums[right] >= target) {
+                right--;
             }
-            while (left < right && nums[left] <= temp) {
+            while (left < right && nums[left] <= target) {
                 left++;
             }
             if (left < right) {
-                swap(nums, left, right);
+                swap(nums,left,right);
             }
         }
-        swap(nums, left, one);
+        //
+        swap(nums,index,left);
         return left;
+
     }
 
     public void swap(int[] nums, int i, int j) {

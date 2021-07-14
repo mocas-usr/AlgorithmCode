@@ -19,27 +19,26 @@ public class 数组中数字出现的次数 {
     //位运算
     public int[] singleNumbers(int[] nums) {
 
-        int x = 1;
         int sum = 0;
         for (int num : nums) {
-            sum = sum ^ num;
+            sum ^= num;
         }
 
-        int temp = 0;
+        int x = 1;
         while ((sum & x) == 0) {
             x <<= 1;
         }
-        //以x为标志分开
+        //x可以作为分界
+
         int num1 = 0;
         int num2 = 0;
-        for (int num : nums) {
-            if ((num & x) == 0) {
-                num1 = num ^ num1;
+        for (int i = 0; i < nums.length; i++) {
+            if ((nums[i] & x) !=0) {
+                num1 ^= nums[i];
             } else {
-                num2 = num ^ num2;
+                num2 ^= nums[i];
             }
         }
-
         return new int[]{num1, num2};
 
     }

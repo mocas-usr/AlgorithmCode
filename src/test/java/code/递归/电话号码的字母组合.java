@@ -8,10 +8,7 @@ package code.递归;/**
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @program: AlgorithmCode
@@ -20,55 +17,50 @@ import java.util.Map;
  * @create: 2020-12-28 18:46
  */
 public class 电话号码的字母组合 {
-    //全局变量
-    List<String> combinations = new ArrayList<String>();
-    //保存现场变量值
-    StringBuilder combination;
+    List<String> res = new LinkedList<>();
+    StringBuilder sb = new StringBuilder();
 
     public List<String> letterCombinations(String digits) {
 
         if (digits.length() == 0) {
-            return combinations;
+            return new LinkedList<>();
         }
-        Map<Character, String> phoneMap = new HashMap<Character, String>() {{
-            put('2', "abc");
-            put('3', "def");
-            put('4', "ghi");
-            put('5', "jkl");
-            put('6', "mno");
-            put('7', "pqrs");
-            put('8', "tuv");
-            put('9', "wxyz");
-        }};
-        combination = new StringBuilder();
-        //回溯起点
-        dfs(0, digits, phoneMap);
-        return combinations;
+        Map<Integer, String> map = new HashMap<>();
+        map.put(2, "abc");
+        map.put(3, "def");
+        map.put(4, "ghi");
+        map.put(5, "jkl");
+        map.put(6, "mno");
+        map.put(7, "pqrs");
+        map.put(8, "tuv");
+        map.put(9, "wxyz");
 
+        char[] chars = digits.toCharArray();
+        dfs(0, chars, map);
+        return res;
     }
 
-    //回溯搜索
-    public void dfs(int index, String digits, Map phoneMap) {
-        //终止条件
-        if (index == digits.length()) {
-            combinations.add(combination.toString());
+    public void dfs(int index, char[] chars, Map<Integer, String> map) {
+        //z终止条件
+        if (index == chars.length) {
+            res.add(sb.toString());
             return;
         }
-        //剪枝
-        //for 循环列表
-        char ch = digits.charAt(index);
-        String letter = (String) phoneMap.get(ch);//
-        // 做选择
-        for (int i = 0; i < letter.length(); i++) {
-            char c = letter.charAt(i);
-            combination.append(c);
 
-            dfs(index + 1, digits, phoneMap);
-
-            // 恢复现场
-            combination.deleteCharAt(combination.length() - 1);
+        //当前选择
+        //当前数字
+        int num = chars[index]-'0';
+        //数字的字符
+        char[] s = map.get(num).toCharArray();
+        //for循环选择
+        for (int i = 0; i < s.length; i++) {
+            //当前选择
+            sb.append(s[i]);
+            //下一路径
+            dfs(index+1,chars,map);
+            //恢复现场
+            sb.deleteCharAt(sb.length()-1);
         }
-
     }
 
 

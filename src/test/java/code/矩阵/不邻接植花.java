@@ -22,45 +22,43 @@ import java.util.Set;
 public class 不邻接植花 {
 
     public int[] gardenNoAdj(int n, int[][] paths) {
-//        if (paths.length<1)
-//        {
-//            return new int[0];
-//        }
-        //建立邻接关系
+
+        //建图
         Map<Integer, Set<Integer>> map = new HashMap<>();
-        for (int i = 0; i < n; i++) {
+        for (int i = 1; i <= n; i++) {
             map.put(i, new HashSet<>());
         }
+        //建立连接关系
         for (int[] path : paths) {
-            map.get(path[0] - 1).add(path[1] - 1);
-            map.get(path[1] - 1).add(path[0] - 1);
+            map.get(path[0]).add(path[1]);
+            map.get(path[1]).add(path[0]);
         }
 
-
-        int[] answer = new int[n];
-        //花园遍历
-        for (int i = 0; i < n; i++) {
-            //周围花的种类
-            //花园颜色
+        int[] ans = new int[n + 1];
+        for (int i = 1; i <= n; i++) {
             boolean[] colors = new boolean[5];
 
-            for (int t : map.get(i))//adj[i]是包含了与i邻接的花园linklist
-            {
-                //邻接花园颜色设为true，
-                colors[answer[t]] = true;
+            //查找相连花园颜色
+            for (int t : map.get(i)) {
+                //标记下不能使用
+                colors[ans[t]] = true;
+
             }
 
-            //寻找花色
-            for (int k = 1; k < 5; k++) {
+            //染色
+            for (int k = 1; k <= 4; k++) {
                 if (!colors[k]) {
-                    answer[i] = k;
+                    ans[i] = k;
                     break;
                 }
             }
 
         }
-
-        return answer;
+        int[] res = new int[n];
+        for (int i = 0; i < n; i++) {
+            res[i] = ans[i + 1];
+        }
+        return res;
 
     }
 

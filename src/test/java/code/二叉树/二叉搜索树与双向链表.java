@@ -16,45 +16,42 @@ import org.junit.Test;
  */
 public class 二叉搜索树与双向链表 {
 
+    Node pre = null;
+    Node cur;
     Node head = null;
-    Node cur = null;
 
     public Node treeToDoublyList(Node root) {
-        if (root == null) {
+        if (root==null)
+        {
             return null;
         }
-        //起始搜索
-        search(root);
-        head.left = cur;
-        cur.right = head;
+        cur = root;
+        dfs(root);
+        head.left=pre;
+        pre.right=head;
         return head;
+
 
     }
 
-
-    public void search(Node root) {
-        //终止条件
+    public void dfs(Node root) {
         if (root == null) {
             return;
         }
 
-        //for 循环列表
         //下一路径
-        search(root.left);
-        if (cur == null) {
-            head = root;
-        }
-        Node pre = cur;
+        dfs(root.left);
+        //当前选择
         cur = root;
-        if (pre != null) {
+        if (pre == null) {
+            head = root;
+            pre = cur;
+        } else {
             pre.right = cur;
             cur.left = pre;
+            pre = cur;
         }
-
-        //当前操作
-        //恢复现场
-        search(root.right);
-
+        dfs(root.right);
     }
 
 
@@ -72,6 +69,7 @@ public class 二叉搜索树与双向链表 {
         node2.left = node1;
         node2.right = node3;
         treeToDoublyList(node4);
+        System.out.println(node1);
 
     }
 

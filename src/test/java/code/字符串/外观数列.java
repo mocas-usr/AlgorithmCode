@@ -26,31 +26,29 @@ public class 外观数列 {
             return "1";
         }
 
-        //for 选择列表
-        String str = countAndSay(n - 1);
-        // 当前操作
-        int l = 0;
-        int r = 0;
-        String countStr = "";
-        for (int i = 0; i < str.length(); i++) {
-            char chl = str.charAt(l);
-            char ch = str.charAt(i);
-            if (ch != chl) {
-                int count = i - l;
-                l = i;
-                countStr = countStr + count + chl;
-            }
-            if (i == str.length() - 1) {
-                int count = i - l + 1;
-                countStr = countStr + count + ch;
+        //当前选择
+        String s = countAndSay(n - 1);
+        char[] str = s.toCharArray();
+        int left = 0;
+        int right = 0;
+        int count = 0;
+        StringBuilder sb = new StringBuilder();
+        while (right < str.length) {
+            if (str[right] != str[left]) {
+                count=right-left;
+                sb.append(count).append(str[left]);
+                left=right;
+            }else
+            {
+                right++;
             }
         }
-        // 下一路径
-
-        //恢复现场
-
-        return countStr;
-
+        if (right!=left)
+        {
+            count=right-left;
+            sb.append(count).append(str[left]);
+        }
+        return sb.toString();
     }
 
     @Test

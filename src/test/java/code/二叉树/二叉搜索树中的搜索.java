@@ -21,35 +21,16 @@ public class 二叉搜索树中的搜索 {
         if (root == null) {
             return null;
         }
-        if (root.val == val) {
+        //当前路径
+        if (root.val > val) {
+            return searchBST(root.left,val);
+        }else if (root.val<val)
+        {
+            return searchBST(root.right,val);
+        }else
+        {
             return root;
         }
-        //循环列表
-        //当前选择
-        else if (root.val > val) {
-            return searchBST(root.left, val);
-        } else if (root.val < val) {
-            return searchBST(root.right, val);
-        }
-        //下一路径
-        //恢复现场
-        return null;
-
-    }
-
-    public TreeNode searchBST2(TreeNode root, int val) {
-        //返回子树就是返回子树的root
-        if (root == null)
-            return null;
-        if (root.val == val) {
-            return root;
-        }
-        if (val < root.val) {
-            return searchBST(root.left, val);
-        } else if (val > root.val) {
-            return searchBST(root.right, val);
-        }
-        return null;
 
     }
 

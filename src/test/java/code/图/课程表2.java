@@ -8,9 +8,7 @@ package code.图;/**
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @program: AlgorithmCode
@@ -19,58 +17,57 @@ import java.util.List;
  * @create: 2021-04-12 15:48
  */
 public class 课程表2 {
-    //全局变量
-    List<List<Integer>> adjacency = new ArrayList<>();
-    int[] flag;
 
-    public boolean canFinish(int numCourses, int[][] prerequisites) {
-        flag = new int[numCourses];
-        //多少课程
+    Map<Integer, Set<Integer>> map = new HashMap<>();
+    int[] flags;
+    Stack<Integer> stack = new Stack<>();
+
+
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+
+        //
         for (int i = 0; i < numCourses; i++) {
-            adjacency.add(new LinkedList<>());
+            map.put(i, new HashSet<>());
         }
-        //添加连接关系
-
         for (int[] course : prerequisites) {
-
-            adjacency.get(course[1]).add(course[0]);
+            map.get(course[1]).add(course[0]);
         }
-
-        //回溯各节点
+        flags = new int[numCourses];
         for (int i = 0; i < numCourses; i++) {
-            //如果搜索到环，则返回false
             if (!dfs(i)) {
-                return false;
+                return new int[0];
             }
         }
+        int[] res = new int[numCourses];
+        int i=0;
 
-        return true;
+        while (!stack.isEmpty())
+        {
+            res[i++]=stack.pop();
+        }
+        return res;
     }
 
-    //回溯搜索,index代表搜索到第几位
+
     public boolean dfs(int index) {
-        //终止条件
-        if (flag[index] == 1) {
+        if (flags[index] == 1) {
             return false;
         }
-        //说明搜索到已经搜过的节点
-        if (flag[index] == -1) {
+        if (flags[index] == -1) {
             return true;
         }
+        //当前选择
+        flags[index] = 1;
 
-        //for 选择列表
-
-        //做选择
-        flag[index] = 1;
-        //下一路径
-        for (int j : adjacency.get(index))//和index点相连接的下一个节点
-        {
-            if (!dfs(j)) {
+        for (int path : map.get(index)) {
+            //下一选择
+            if (!dfs(path)) {
                 return false;
             }
         }
-        //恢复现场
-        flag[index] = -1;
+        flags[index] = -1;
+        stack.add(index);
+
         return true;
     }
 
@@ -79,7 +76,7 @@ public class 课程表2 {
     public void test() {
         int numCourses = 2;
         int[][] prerequisites = {{1, 0}};
-        boolean res = canFinish(numCourses, prerequisites);
+        int[] res = findOrder(numCourses, prerequisites);
         System.out.println(res);
     }
 }

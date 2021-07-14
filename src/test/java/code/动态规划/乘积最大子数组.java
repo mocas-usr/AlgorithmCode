@@ -8,6 +8,8 @@ package code.动态规划;/**
 
 import org.junit.Test;
 
+import java.util.Map;
+
 /**
  * @program: AlgorithmCode
  * @description:
@@ -19,27 +21,33 @@ public class 乘积最大子数组 {
     //动态规划
     public int maxProduct(int[] nums) {
 
-
-        int max = nums[0];
-        int min = nums[0];
-        int res = max;
-        for (int i = 1; i < nums.length; i++) {
-            int maxF = max;
-            int minF = min;
-            max = Math.max(Math.max(maxF * nums[i], minF * nums[i]), nums[i]);
-            min = Math.min(nums[i], Math.min(nums[i] * maxF, nums[i] * minF));
-
-            res = Math.max(max, res);
-
+        if (nums.length==1)
+        {
+            return nums[0];
+        }
+        int n=nums.length;
+        //以nums[i]结尾的最大数值和最小数值
+        int[] maxdp=new int[n];
+        int[] mindp=new int[n];
+        maxdp[0]=nums[0];
+        mindp[0]=nums[0];
+        int res= nums[0];
+        for (int i=1;i<n;i++)
+        {
+            maxdp[i]= Math.max(nums[i],Math.max(mindp[i-1]*nums[i],maxdp[i-1]*nums[i]));
+            mindp[i]=Math.min(nums[i],Math.min(maxdp[i-1]*nums[i],mindp[i-1]*nums[i]));
+            res=Math.max(res,maxdp[i]);
         }
         return res;
+
+
 
 
     }
 
     @Test
     public void test() {
-        int[] nums = {-4, -3, -2};
+        int[] nums = {-3, -1, -1};
         int res = maxProduct(nums);
         System.out.println(res);
     }

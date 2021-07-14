@@ -23,34 +23,43 @@ public class 组合总数 {
     List<Integer> list = new LinkedList<>();
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
+
         if (candidates.length == 0) {
-            return null;
+            return new LinkedList<>();
         }
         int sum = 0;
-        dfs(candidates, target, 0, sum);
-        return res;
+        dfs(candidates, 0, target, sum);
 
+        return res;
     }
 
-    public void dfs(int[] candidates, int target, int index, int sum) {
+    public void dfs(int[] cand, int index, int target, int sum) {
         //终止条件
-        if (sum == target) {
-            res.add(new LinkedList<>(list));
+        if (index==cand.length)
+        {
             return;
         }
-        if (sum > target) {
+        if (sum>=target)
+        {
             return;
         }
+
         //for 循环列表
-        for (int i = index; i < candidates.length; i++) {
-            //做选择
-            list.add(candidates[i]);
-            sum = sum + candidates[i];
-            // 下一路径
-            dfs(candidates, target, i, sum);
-            // 恢复现场
-            list.remove(list.size() - 1);
-            sum = sum - candidates[i];
+        for (int i=index;i<cand.length;i++)
+        {
+            //当前选择
+            list.add(cand[i]);
+            sum+=cand[i];
+            if (sum==target)
+            {
+                res.add(new LinkedList<>(list));
+                //恢复现场
+            }
+            //下一路径
+            dfs(cand,index,target,sum);
+            //恢复现场
+            sum-=cand[i];
+            list.remove(list.size()-1);
         }
     }
 

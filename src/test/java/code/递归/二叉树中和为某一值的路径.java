@@ -23,38 +23,33 @@ public class 二叉树中和为某一值的路径 {
     List<Integer> list = new LinkedList<>();
 
     public List<List<Integer>> pathSum(TreeNode root, int target) {
+
         if (root == null) {
             return new LinkedList<>();
         }
-        int total = 0;
-        dfs(root, target, total);
+        int sum = 0;
+        dfs(root, target, sum);
         return res;
-
     }
 
-    public void dfs(TreeNode root, int target, int total) {
+    public void dfs(TreeNode root, int target, int sum) {
         //终止条件
         if (root == null) {
             return;
         }
-        //做选择
+        //当前路径
+        sum += root.val;
         list.add(root.val);
-        total = total + root.val;
-        if (total == target && root.left == null && root.right == null) {
+        if (sum == target &&root.left==null &&root.right==null) {
             res.add(new LinkedList<>(list));
         }
         //下一路径
-        if (root.left != null) {
-            dfs(root.left, target, total);
-        }
-        if (root.right != null) {
-            dfs(root.right, target, total);
-        }
+        dfs(root.left, target, sum);
+        dfs(root.right, target, sum);
         //恢复现场
+        sum -= root.val;
         list.remove(list.size() - 1);
-
     }
-
 
     @Test
     public void test() {

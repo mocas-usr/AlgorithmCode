@@ -23,6 +23,7 @@ public class 二叉树的深度 {
         if (root == null) {
             return 0;
         }
+        //当前选择
         int maxDepth = 1;
         int left = maxDepth(root.left);
         int right = maxDepth(root.right);
@@ -32,32 +33,34 @@ public class 二叉树的深度 {
 
     //bfs，队列实现
     public int maxDepth2(TreeNode root) {
+
         if (root == null) {
             return 0;
         }
+        int width = 0;
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        int maxdepth = 0;
-        int size = 0;
+        queue.add(root);
+
         while (!queue.isEmpty()) {
-            //一层几个节点
-            size = queue.size();
+            int size = queue.size();
+            width++;
             while (size > 0) {
-                TreeNode node = queue.poll();
-                if (node.left != null) {
-                    queue.offer(node.left);
+
+                TreeNode node=queue.poll();
+                if (node.left!=null)
+                {
+                    queue.add(node.left);
                 }
-                if (node.right != null) {
-                    queue.offer(node.right);
+                if (node.right!=null)
+                {
+                    queue.add(node.right);
                 }
                 size--;
             }
 
-
-            maxdepth++;
-
         }
-        return maxdepth;
+
+        return width;
     }
 
 

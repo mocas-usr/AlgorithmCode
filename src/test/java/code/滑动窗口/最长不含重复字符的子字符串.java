@@ -22,29 +22,28 @@ public class 最长不含重复字符的子字符串 {
 
     public int lengthOfLongestSubstring(String s) {
 
+
         Map<Character, Integer> map = new HashMap<>();
 
-        //dp为包含当前字符的最大不重复长度
-        int dp = 0;
-        int n = s.length();
-        char[] str = s.toCharArray();
-        int res = 0;
-        for (int i = 0; i < str.length; i++) {
-            char c = str[i];
-            //原本字符的位置
-            int key = map.getOrDefault(c, -1);
-            //不在上一个范围
-            if (i - key > dp) {
-                dp = dp + 1;
-            } else {
-                dp = i - key;
-            }
+        int left = -1;
+        int right = 0;
 
-            map.put(c, i);
-            res = Math.max(res, dp);
+        int res = 0;
+        char[] str = s.toCharArray();
+        //[left+1,right]没有重复元素
+        while (right < str.length) {
+            //窗口扩增
+            char curR = str[right];
+            //窗口缩减
+            if (map.containsKey(curR)) {
+                left = Math.max(left, map.get(curR));
+            }
+            //当前窗口操作
+            res = Math.max(res, right - left);
+            map.put(curR, right);
+            right++;
         }
         return res;
-
     }
 
     //哈希表
@@ -70,7 +69,7 @@ public class 最长不含重复字符的子字符串 {
     @Test
     public void test() {
         String s = "pwwkew";
-        int res = lengthOfLongestSubstring2(s);
+        int res = lengthOfLongestSubstring(s);
         System.out.println(res);
     }
 }

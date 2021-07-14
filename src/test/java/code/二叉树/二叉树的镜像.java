@@ -8,7 +8,9 @@ package code.二叉树;/**
 
 import org.junit.Test;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -19,40 +21,45 @@ import java.util.Stack;
  */
 public class 二叉树的镜像 {
     public TreeNode mirrorTree(TreeNode root) {
+
+        //终止条件
         if (root == null) {
             return null;
         }
+        //当前操作
+        //下一路径
         mirrorTree(root.left);
         mirrorTree(root.right);
-        //当前处理
         TreeNode temp = root.left;
         root.left = root.right;
         root.right = temp;
         return root;
-
     }
+
 
     //栈处理
     public TreeNode mirrorTree2(TreeNode root) {
         if (root == null) {
             return null;
         }
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode node = root;
-        stack.push(node);
 
-        while (!stack.isEmpty()) {
-            node = stack.pop();
-            if (node.left != null) {
-                stack.push(node.left);
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            while (size > 0) {
+                TreeNode node = queue.poll();
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+                TreeNode temp = node.right;
+                node.right = node.left;
+                node.left = temp;
+                size--;
             }
-            if (node.right != null) {
-                stack.push(node.right);
-            }
-
-            TreeNode temp = node.left;
-            node.left = node.right;
-            node.right = temp;
 
         }
         return root;

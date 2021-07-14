@@ -19,50 +19,48 @@ import java.util.List;
  * @create: 2020-12-09 16:05
  */
 public class 字符串的排列 {
-    List<String> res = new LinkedList();
     char[] chars;
+    List<String> res = new LinkedList<>();
 
     public String[] permutation(String s) {
+
         chars = s.toCharArray();
-
-        if (s.length() == 0) {
-            return new String[0];
-        }
-        //搜索起点
+        int n = s.length();
         dfs(0);
-        return res.toArray(new String[res.size()]);
+        String[] ans=new String[res.size()];
 
+        for (int i=0;i<res.size();i++)
+        {
+            ans[i]=res.get(i);
+        }
+        return ans;
 
     }
 
+
     public void dfs(int index) {
         //终止条件
-        if (index == chars.length) {
+        if (index == chars.length - 1) {
             res.add(String.valueOf(chars));
             return;
         }
-        //剪枝
+
         //for 循环列表
         HashSet<Character> set = new HashSet<>();
         for (int i = index; i < chars.length; i++) {
-            // 当前选择
-
-            char ch = chars[i];
-            //去重
-            if (set.contains(ch)) {
+            //
+            //当前选择
+            if (set.contains(chars[i]))
+            {
                 continue;
             }
-            set.add(ch);
-            //做选择
-            swap(i, index);
-            // 下一路径
-            //恢复现场
+            set.add(chars[i]);
+            swap(index, i);
+            //下一路径
             dfs(index + 1);
-            swap(i, index);
-
-
+            //恢复现场
+            swap(index, i);
         }
-
 
     }
 
@@ -74,7 +72,7 @@ public class 字符串的排列 {
 
     @Test
     public void test() {
-        String s = "abbc";
+        String s = "abc";
         String[] res = permutation(s);
         System.out.println(res);
     }

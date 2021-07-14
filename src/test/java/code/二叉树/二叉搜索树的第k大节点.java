@@ -9,6 +9,7 @@ package code.二叉树;/**
 import org.junit.Test;
 import org.omg.PortableInterceptor.INACTIVE;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,26 +20,29 @@ import java.util.List;
  * @create: 2020-11-14 14:55
  */
 public class 二叉搜索树的第k大节点 {
+
     public int kthLargest(TreeNode root, int k) {
-        if (root == null) {
+
+        if (root==null)
+        {
             return -1;
         }
-        List<Integer> list = new LinkedList<>();
-        searchTree(root, list);
-        int res = list.get(k - 1);
-        return res;
-
+        ArrayList<Integer> list=new ArrayList<>();
+        dfs(root,list);
+        return list.get(k-1);
     }
 
-    public void searchTree(TreeNode root, List<Integer> list) {
-        //终止条件
-        if (root == null) {
+    public void dfs(TreeNode root,ArrayList<Integer> list)
+    {
+        if (root==null)
+        {
             return;
         }
-        //
-        searchTree(root.right, list);
+        dfs(root.right,list);
         list.add(root.val);
-        searchTree(root.left, list);
+        dfs(root.left,list);
+
+
     }
 
 
