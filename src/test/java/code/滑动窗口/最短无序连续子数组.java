@@ -6,6 +6,8 @@ package code.滑动窗口;/**
  * @email: wangyuhang_mocas@163.com
  */
 
+import org.junit.Test;
+
 /**
  * @program: AlgorithmCode
  * @description:
@@ -16,33 +18,37 @@ public class 最短无序连续子数组 {
     //两次遍历
     public int findUnsortedSubarray(int[] nums) {
 
-        int start = 0;
-        int end = -1;
-        int max = nums[0];
-        int min = nums[nums.length - 1];
-        //寻找结束的点
-        for (int i = 1; i < nums.length; i++) {
-
-            if (nums[i] >= max) {
-                max = nums[i];
-            } else {
-                end = i;
-            }
-
-        }
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        int left = nums.length - 1;
+        int right = 0;
 
         for (int i = nums.length - 1; i >= 0; i--) {
             if (nums[i] <= min) {
                 min = nums[i];
             } else {
-                start = i;
+                left = i;
             }
         }
 
-        if (end - start > 0) {
-            return end - start + 1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] >= max) {
+                max = nums[i];
+            } else {
+                right = i;
+            }
+        }
+        if (left < right) {
+            return right - left + 1;
         } else {
             return 0;
         }
+    }
+
+    @Test
+    public void test() {
+        int[] nums = {1,2,3,3,3};
+        int res = findUnsortedSubarray(nums);
+        System.out.println(res);
     }
 }

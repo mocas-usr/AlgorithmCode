@@ -13,4 +13,25 @@ package code.位运算;/**
  * @create: 2021-05-16 10:33
  */
 public class 消失的两个数字 {
+//
+//    public int[] missingTwo(int[] nums) {
+//
+//        int total = 0;
+//        int n = nums.length + 2;
+//
+//        for (int i = 1; i <= n; i++) {
+//            total ^= i;
+//        }
+//
+//        int sum = 0;
+//        for (int num : nums) {
+//            sum^=num;
+//        }
+//        //a亦或b
+//        int ab=sum^total;
+//
+//
+//
+//
+//    }
 }

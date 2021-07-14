@@ -19,25 +19,28 @@ public class 最长连续序列 {
     //哈希表
     public int longestConsecutive(int[] nums) {
 
-        //k,v代表当前左右边界
+        //k,v代表当前左右边界,代表滑动窗口的左右数值
         Map<Integer, Integer> map = new HashMap<>();
 
         for (int num : nums) {
-            //初始化左右边界
+            //初始化左右边界为自身数值
             map.put(num, num);
         }
+
         int res = 0;
         for (int i = 0; i < nums.length; i++) {
-            int current = nums[i];
-
-            while (map.containsKey(current + 1)) {
-                current++;
+            //扩增窗口大小
+            int num = nums[i];
+            while (map.containsKey(num + 1)) {
+                num++;
             }
-
-            map.put(nums[i], current);
-            res = Math.max(res, current - nums[i] + 1);
+            //缩减窗口
+            //当前操作
+            map.put(nums[i], num);
+            res = Math.max(res, num - nums[i] + 1);
         }
-
         return res;
+
+
     }
 }

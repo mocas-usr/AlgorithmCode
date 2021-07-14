@@ -17,36 +17,42 @@ public class 最长回文子串 {
     //动态规划
     public String longestPalindrome(String s) {
 
-        int len = s.length();
-        char[] chars = s.toCharArray();
-        //i,j代表范围内是否是回文，
-        boolean[][] dp = new boolean[len][len];
-
-        for (int i = 0; i < len; i++) {
-            dp[i][i] = true;
+        if (s.length() == 0) {
+            return "";
         }
-
-        int maxLen = 1;
-        int begin = 0;
-
-        for (int j = 1; j < s.length(); j++) {
-            for (int i = 0; i < j; i++) {
-                if (chars[i] != chars[j]) {
-                    dp[i][j] = false;
+        int n = s.length();
+        //dp[i][j]代表是s[i]到s[j]是否是回文串
+        boolean[][] dp = new boolean[n][n];
+        char[] str = s.toCharArray();
+        int len = 0;
+        int max = 0;
+        int start = -1;
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < i; j++) {
+                //判断(j,i)的回文
+                if (str[i] != str[j]) {
+                    dp[j][i] = false;
                 } else {
                     if (j - i < 3) {
-                        dp[i][j] = true;
+                        dp[j][i] = true;
                     } else {
-                        dp[i][j] = dp[i + 1][j - 1];
+                        dp[j][i] = dp[j + 1][i - 1];
+                    }
+                    if (dp[j][i]) {
+                        len = i-j + 1;
+                        if (len > max) {
+                            max = len;
+                            start = j;
+                        }
                     }
 
                 }
-                if (dp[i][j] && j - i + 1 > maxLen) {
-                    begin = i;
-                    maxLen = j - i + 1;
-                }
+
             }
-        }
-        return s.substring(begin, begin + maxLen);
+
+        String res = s.substring(start, start + len + 1);
+        return res;
+
+
     }
 }
