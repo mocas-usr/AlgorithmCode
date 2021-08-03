@@ -17,68 +17,34 @@ import java.util.Stack;
  * @create: 2021-01-06 21:59
  */
 public class 最长有效括号 {
-    public int longestValidParentheses2(String s) {
-        if (s == null || s.length() < 2) {
-            return 0;
-        }
-        //
-
-        int len = s.length();
-        char[] str = s.toCharArray();
-        //dp[i]代表截止到si位置的对称括号长度（包括si）
-        int[] dp = new int[len];
-        dp[0] = 0;
-        int res = 0;
-        for (int i = 1; i < len; i++) {
-
-            if (str[i] == ')') {
-                //前一个的括号长度
-                int preLen = dp[i - 1];
-                int j = i - preLen - 1;
-                if (j >= 0 && str[j] == '(') {
-                    dp[i] = dp[i - 1] + 2;
-                    if (j - 1 >= 0) {
-                        dp[i] += dp[j - 1];
-                    }
-                } else {
-                    dp[i] = 0;
-                }
-            }
-            res = Math.max(res, dp[i]);
-
-        }
-        return res;
-    }
 
     public int longestValidParentheses(String s) {
 
-        Stack<Integer> stack = new Stack<>();
+        char[] str=s.toCharArray();
+        Stack<Integer> stack=new Stack<>();
         stack.push(-1);
-        char[] str = s.toCharArray();
+        int res=0;
 
-        int res = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (str[i] == '(') {
-                //把这个标记着
+        for (int i=0;i<s.length();i++)
+        {
+            if (str[i]=='(')
+            {
                 stack.push(i);
-            } else {
-                //对应的左括号去除
-                stack.pop();
-                //如果为空，说明，是不构成有效括号的这一位
-                if (stack.isEmpty()) {
-                    //压入栈，
+            }else {
+                int top=stack.pop();
+                //若为空。则不能构成
+                if (stack.isEmpty())
+                {
+                    //把这个位置导入
                     stack.push(i);
-
-                } else {
-
-                    //构成有效括号长度
-                    int len = i - stack.peek();
-                    res = Math.max(len, res);
+                }else
+                {
+                  res=Math.max(res,i-stack.peek());
                 }
+
             }
         }
         return res;
-
     }
 
     @Test

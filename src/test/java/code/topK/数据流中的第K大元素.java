@@ -20,32 +20,34 @@ import java.util.Queue;
  * @create: 2020-11-25 10:53
  */
 public class 数据流中的第K大元素 {
+
     class KthLargest {
 
         Queue<Integer> queue;
         int size;
-
         public KthLargest(int k, int[] nums) {
-            size = k;
-            queue = new PriorityQueue<>();
-            for (int num : nums) {
+            size=k;
+            queue=new PriorityQueue<>();
+            for (int num:nums)
+            {
                 add(num);
             }
         }
 
         public int add(int val) {
 
-            if (queue.size() < size) {
+            if (queue.size()<size)
+            {
                 queue.add(val);
-            } else {
-                if (queue.peek() < val) {
-                    queue.add(val);
+            }else
+            {
+                if (val>queue.peek())
+                {
                     queue.poll();
+                    queue.add(val);
                 }
             }
             return queue.peek();
-
-
         }
     }
 
@@ -53,10 +55,10 @@ public class 数据流中的第K大元素 {
     public void test() {
         int[] nums = {4, 5, 8, 2};
         KthLargest kthLargest = new KthLargest(3, nums);
-        kthLargest.add(3);   // return 4
-        kthLargest.add(5);   // return 5
-        kthLargest.add(10);  // return 5
-        kthLargest.add(9);   // return 8
+        int num1=   kthLargest.add(3);   // return 4
+        num1=kthLargest.add(5);   // return 5
+        num1=kthLargest.add(10);  // return 5
+       num1= kthLargest.add(9);   // return 8
         kthLargest.add(4);   // return 8
 
 

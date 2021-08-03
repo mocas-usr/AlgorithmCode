@@ -8,6 +8,7 @@ package code.二叉树;/**
 
 import org.junit.Test;
 
+import javax.sound.sampled.EnumControl;
 import java.util.*;
 
 /**
@@ -23,34 +24,31 @@ public class 二叉搜索树的后序遍历序列 {
         if (postorder.length == 0) {
             return true;
         }
-        boolean res = helpTree(postorder, 0, postorder.length - 1);
+        boolean res = dfs(postorder, 0, postorder.length - 1);
         return res;
 
     }
 
-    public boolean helpTree(int[] nums, int left, int right) {
+    public boolean dfs(int[] nums, int left, int right) {
         //终止条件
         if (left > right) {
             return true;
         }
-        //当前选择
-        int index=left;
-        while (index<right &&nums[index]<nums[right])
-        {
+
+        TreeNode root = new TreeNode(nums[right]);
+        int rootval = nums[right];
+        int index = left;
+        while (index < right && nums[index] < rootval) {
             index++;
         }
-        //index此时指向右子树第一个数值，大于rootval
         for (int i=index;i<right;i++)
         {
-            if (nums[i]<nums[right])
+            if (nums[i]<rootval)
             {
                 return false;
             }
         }
-        //下一路径
-        boolean leftTree=helpTree(nums,left,index-1);
-        boolean rightTree=helpTree(nums,index,right-1);
-        return leftTree&&rightTree;
+        return dfs(nums,left,index-1)&&dfs(nums,index,right-1);
     }
 
 

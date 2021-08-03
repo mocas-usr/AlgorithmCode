@@ -7,6 +7,7 @@ package code;/**
  */
 
 import java.util.HashSet;
+import java.util.List;
 
 /**
  *@program: AlgorithmCode
@@ -15,27 +16,66 @@ import java.util.HashSet;
  *@create: 2021-01-14 21:40
  */
 public class 环形链表2 {
+
+
     public ListNode detectCycle(ListNode head) {
         if (head==null)
         {
             return null;
         }
 
-        HashSet<ListNode> set=new HashSet<>();
-        ListNode tmp=head;
-        while (tmp!=null)
+        ListNode slow=head;
+        ListNode fast=head;
+        ListNode index=null;
+
+        while (fast!=null &&fast.next!=null)
         {
-            if (set.contains(tmp))
+            slow=slow.next;
+            fast=fast.next.next;
+            if (slow==fast)
             {
-                return tmp;
+                index=slow;
+                break;
             }
-            set.add(tmp);
-            tmp=tmp.next;
         }
-        return null;
+        if (index==null)
+        {
+            return null;
+        }
+
+        //此时slow是相遇点
+        fast=head;
+        while (fast!=slow)
+        {
+            slow=slow.next;
+            fast=fast.next;
+        }
+
+        return fast;
+
 
     }
 
+    public ListNode detectCycle2(ListNode head) {
+
+        if (head==null)
+        {
+            return null;
+        }
+        HashSet<ListNode> set=new HashSet<>();
+        ListNode cur=head;
+
+        while (cur!=null)
+        {
+            if (set.contains(cur))
+            {
+                return cur;
+            }
+            set.add(cur);
+            cur=cur.next;
+        }
+        return null;
+    }
      class ListNode {
       int val;
        ListNode next;

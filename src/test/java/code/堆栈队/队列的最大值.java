@@ -21,46 +21,46 @@ public class 队列的最大值 {
     //这是队列和栈有区别
     class MaxQueue {
 
-
-        Queue<Integer> queue;
+        //用于队列的最大数值
         Deque<Integer> deque;
+        Queue<Integer> queue;
 
         public MaxQueue() {
-            queue = new LinkedList<>();
             deque = new LinkedList<>();
-
+            queue = new LinkedList<>();
         }
 
         public int max_value() {
 
-            if (!queue.isEmpty()) {
-                return deque.peek();
-            } else {
+            if (deque.isEmpty()) {
                 return -1;
+            } else {
+                return deque.peekFirst();
             }
+
         }
 
         public void push_back(int value) {
+
             queue.add(value);
-            //一定要把当前val加进去
-            //清除比val小的
             while (!deque.isEmpty() && value > deque.peekLast()) {
                 deque.pollLast();
             }
-            deque.offer(value);
+            deque.add(value);
         }
 
         public int pop_front() {
-            if (!queue.isEmpty()) {
-                int num = queue.peek();
-                if (num == deque.peekFirst()) {
-                    deque.pollFirst();
-                }
-                return queue.poll();
-            } else {
+            if (queue.isEmpty())
+            {
                 return -1;
             }
 
+            int num=queue.peek();
+            if (num==deque.peek())
+            {
+                deque.pollFirst();
+            }
+            return queue.poll();
         }
     }
 }

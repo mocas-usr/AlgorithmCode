@@ -9,6 +9,8 @@ package code.链表;/**
 import org.junit.Test;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @program: AlgorithmCode
@@ -17,31 +19,34 @@ import java.util.HashSet;
  * @create: 2021-04-17 17:15
  */
 public class 移除重复节点 {
+
     public ListNode removeDuplicateNodes(ListNode head) {
-        if (head == null) {
+
+        if (head==null)
+        {
             return null;
         }
-
-        HashSet<Integer> set = new HashSet<>();
-
-        ListNode cur = head.next;
-        ListNode pre=head;
-        set.add(pre.val);
-        while (cur!= null) {
+        Set<Integer> set=new HashSet<>();
+        ListNode temp=new ListNode(-1);
+        ListNode cur=head;
+        ListNode pre=temp;
+        while (cur!=null)
+        {
             if (set.contains(cur.val))
             {
                 cur=cur.next;
                 pre.next=cur;
+
             }else
             {
                 set.add(cur.val);
                 pre.next=cur;
-                pre=pre.next;
                 cur=cur.next;
+                pre=pre.next;
             }
         }
+        return temp.next;
 
-        return head;
     }
 
     @Test

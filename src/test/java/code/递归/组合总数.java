@@ -18,7 +18,7 @@ import java.util.List;
  * @create: 2021-01-07 21:35
  */
 public class 组合总数 {
-    //全局变量
+
     List<List<Integer>> res = new LinkedList<>();
     List<Integer> list = new LinkedList<>();
 
@@ -27,41 +27,43 @@ public class 组合总数 {
         if (candidates.length == 0) {
             return new LinkedList<>();
         }
-        int sum = 0;
-        dfs(candidates, 0, target, sum);
 
+        //起点
+        dfs(candidates, target, 0, 0);
         return res;
     }
 
-    public void dfs(int[] cand, int index, int target, int sum) {
+    public void dfs(int[] nums, int target, int index, int sum) {
+
         //终止条件
-        if (index==cand.length)
+        if (index == nums.length) {
+            return;
+        }
+        //剪枝
+        if (sum>target)
         {
             return;
         }
-        if (sum>=target)
-        {
-            return;
+        //当前操作
+
+        //for循环列表
+
+        for (int i = index; i < nums.length; i++) {
+            list.add(nums[i]);
+            sum += nums[i];
+            if (sum == target) {
+
+                res.add(new LinkedList<>(list));
+            }
+            dfs(nums, target, i, sum);
+            //恢复现场
+            sum -= nums[i];
+            list.remove(list.size() - 1);
         }
 
-        //for 循环列表
-        for (int i=index;i<cand.length;i++)
-        {
-            //当前选择
-            list.add(cand[i]);
-            sum+=cand[i];
-            if (sum==target)
-            {
-                res.add(new LinkedList<>(list));
-                //恢复现场
-            }
-            //下一路径
-            dfs(cand,index,target,sum);
-            //恢复现场
-            sum-=cand[i];
-            list.remove(list.size()-1);
-        }
     }
+
+    //0,1背包
 
     @Test
     public void test() {

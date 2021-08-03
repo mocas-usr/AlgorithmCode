@@ -21,24 +21,28 @@ public class 二叉树中的最大路径和 {
         if (root == null) {
             return 0;
         }
+
         dfs(root);
         return res;
+
     }
 
-    public int dfs(TreeNode root) {
-
-        if (root == null) {
+    //求各节点的和
+    public int dfs(TreeNode root)
+    {
+        if (root==null)
+        {
             return 0;
         }
-        //当前选择
         //下一路径
-        int left=Math.max(dfs(root.left),0);
-        int right=Math.max(dfs(root.right),0);
+        int left=Math.max(0,dfs(root.left));
+        int right=Math.max(0,dfs(root.right));
+        //当前选择
         int sum=root.val+left+right;
-        res=Math.max(res,sum);
-        //恢复现场
-        return root.val+Math.max(left,right);
 
+        res=Math.max(res,sum);
+        int num=root.val+Math.max(left,right);
+        return num;
     }
 }
 

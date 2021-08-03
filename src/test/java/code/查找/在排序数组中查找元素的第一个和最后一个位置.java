@@ -16,51 +16,53 @@ import org.junit.Test;
  */
 public class 在排序数组中查找元素的第一个和最后一个位置 {
 
+
     public int[] searchRange(int[] nums, int target) {
         if (nums.length == 0) {
             return new int[]{-1,-1};
         }
 
-        int n = nums.length;
-        int left = 0;
-        int right = n - 1;
-        int mid = 0;
-        boolean flag = false;
-        while (left <= right) {
-            mid = left + (right - left) / 2;
-            if (nums[mid] > target) {
-                right = mid - 1;
-            } else if (nums[mid] < target) {
-                left = mid +1;
-            } else {
-                flag=true;
-                right--;
-            }
-        }
-        int leftIndex=-1;
-        if (flag)
-        {
-            leftIndex=left;
-        }else
-        {
-            return new int[]{-1,-1};
-        }
 
-        left=0;
-        right=n-1;
-        while (left<=right)
-        {
-            mid=left+(right-left)/2;
+        int res = -1;
+
+        int left = 0;
+        int right = nums.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
             if (nums[mid] > target) {
                 right = mid - 1;
             } else if (nums[mid] < target) {
                 left = mid + 1;
             } else {
-                left++;
+                res = mid;
+                right = mid - 1;
             }
         }
-        int rightIndex=right;
-        return new int[]{leftIndex,rightIndex};
+        int leftIndex = 0;
+        if (res != -1) {
+            leftIndex = res;
+        } else {
+            return new int[]{-1, -1};
+        }
+        int rightIndex = leftIndex;
+
+        left = 0;
+        right = nums.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] > target) {
+                right = mid - 1;
+            } else if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                res = mid;
+                left = mid + 1;
+            }
+        }
+
+        return new int[]{leftIndex, res};
 
     }
 

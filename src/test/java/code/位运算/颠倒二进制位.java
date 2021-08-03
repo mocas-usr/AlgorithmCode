@@ -13,19 +13,15 @@ package code.位运算;/**
  * @create: 2020-11-14 09:52
  */
 public class 颠倒二进制位 {
+
     public int reverseBits(int n) {
 
-        int res=0;
-        for (int i=0;i<32;i++)
-        {
-            //31次移动
+        int res = 0;
+        for (int i = 0; i < 32; i++) {
             res<<=1;
-            int t=n &1;
-            //
-            res |=t;
-            //移动
+            int t = n & 1;
+            res |= t;
             n>>=1;
-
         }
         return res;
     }

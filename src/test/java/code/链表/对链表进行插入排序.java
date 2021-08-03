@@ -6,6 +6,8 @@ package code.链表;/**
  * @email: wangyuhang_mocas@163.com
  */
 
+import java.util.List;
+
 /**
  * @program: AlgorithmCode
  * @description:
@@ -14,41 +16,40 @@ package code.链表;/**
  */
 public class 对链表进行插入排序 {
 
+
     public ListNode insertionSortList(ListNode head) {
         if (head == null) {
             return null;
         }
 
-        //已经排序的
-        ListNode sorted = head;
-        ListNode cur = head.next;//将要排序的
-
-        ListNode newHead = new ListNode(-1);
-        newHead.next = head;
+        ListNode temp = new ListNode(-1);
+        temp.next = head;
+        //排好序的链表
+        ListNode sorted = temp;
+        ListNode cur = head;
 
         while (cur != null) {
-
-            if (cur.val >= sorted.val) {
+            if (cur.val > sorted.val) {
                 sorted = sorted.next;
+                cur=sorted.next;
             } else {
-                //说明此时要向前遍历
-                ListNode pre = newHead;
-                ListNode curNode = newHead.next;
-                while (curNode.val < cur.val) {
-                    curNode = curNode.next;
-                    pre = pre.next;
+                ListNode pre = temp;
+                ListNode index = temp.next;
+
+                while (cur.val > index.val) {
+                    index=index.next;
+                    pre=pre.next;
                 }
-                //插入
-                sorted.next = cur.next;
-                pre.next = cur;
-                cur.next = curNode;
-
+                //插入之间
+                sorted.next=cur.next;
+                cur.next=index;
+                pre.next=cur;
+                //恢复cur的位置
+                cur=sorted.next;
             }
-            //移动
-            cur = sorted.next;
-        }
-        return newHead.next;
 
+        }
+        return temp.next;
 
     }
 }

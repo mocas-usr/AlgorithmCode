@@ -6,6 +6,8 @@ package code.动态规划;/**
  * @email: wangyuhang_mocas@163.com
  */
 
+import java.util.Stack;
+
 /**
  * @program: AlgorithmCode
  * @description:
@@ -13,31 +15,30 @@ package code.动态规划;/**
  * @create: 2021-06-21 17:17
  */
 public class 接雨水 {
+    //单调栈
     public int trap(int[] height) {
 
-        int n = height.length;
-        //leftmax[i]为nums[i]左边的最高
-        int[] leftMax = new int[n];
-        int[] rightMax = new int[n];
-
-        for (int i = 1; i < n; i++) {
-            //不包括he[i]
-            leftMax[i] = Math.max(leftMax[i - 1], height[i - 1]);
-        }
-
-        for (int j = n - 2; j >= 1; j--) {
-            rightMax[j] = Math.max(rightMax[j +1], height[j + 1]);
-        }
+        //保持递减栈
+        Stack<Integer> stack = new Stack<>();
 
         int res = 0;
-        for (int i = 1; i < n - 1; i++) {
-            int min = Math.min(leftMax[i], rightMax[i]);
-            if (min-height[i]>0)
-            {
-                res+=min-height[i];
+        for (int i = 0; i < height.length; i++) {
+
+            //如果栈此时大于栈顶
+            while (!stack.isEmpty() && height[i] > height[stack.peek()]) {
+                //开始出栈
+                int top = stack.pop();
+                //如果这时没有了，则不存水
+                if (stack.isEmpty()) {
+                    break;
+                }
+                int left = stack.peek();
+                int curWidth = i - left - 1;
+                int curHeight = Math.min(height[left], height[i]) - height[top];
+                res += curHeight * curWidth;
             }
+            stack.push(i);
         }
         return res;
-
     }
 }

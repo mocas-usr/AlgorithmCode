@@ -13,34 +13,33 @@ package code.链表;/**
  * @create: 2021-04-17 20:29
  */
 public class 分割链表 {
-    public ListNode partition(ListNode head, int x) {
 
-        if (head==null)
-        {
+    public ListNode partition(ListNode head, int x) {
+        if (head == null) {
             return null;
         }
-        ListNode smallHead = new ListNode(-1);
-        ListNode bigHead = new ListNode(-2);
-        //指针
+        ListNode lowHead = new ListNode(-1);
+        ListNode highHead = new ListNode(-1);
+        ListNode low = lowHead;
+        ListNode high = highHead;
         ListNode cur = head;
-        ListNode small = smallHead;
-        ListNode big = bigHead;
 
         while (cur != null) {
-            ListNode node = new ListNode(cur.val);
-            if (cur.val >= x) {
-                big.next = node;
-                big=big.next;
-            }else
-            {
-                small.next=node;
-                small=small.next;
+            if (cur.val < x) {
+                low.next = cur;
+                low=low.next;
+            } else {
+                high.next = cur;
+                high=high.next;
             }
             cur = cur.next;
         }
-        //连接
-        small.next=bigHead.next;
-        return smallHead.next;
+        //拼接
+        low.next = highHead.next;
+        high.next = null;
+        return lowHead.next;
+
+
     }
 }
 

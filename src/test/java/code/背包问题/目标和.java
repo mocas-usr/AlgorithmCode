@@ -95,22 +95,27 @@ public class 目标和 {
         int sum = 0;
         for (int num : nums) {
             sum += num;
+
         }
-        int diff = sum - target;
-        if (diff < 0 || diff % 2 != 0) {
+
+        int s = (sum + target);
+        if (s % 2 != 0) {
             return 0;
         }
-        int neg = diff / 2;
-        int n = nums.length;
-        //转换为硬币问题，用num构成数值target
-        int[] dp = new int[neg + 1];
-        dp[0] = 1;
+        int t = s / 2;
+
+        //背包
+        //dp[i]代表i容量的个数
+        int[] dp = new int[t + 1];
+        dp[0]=1;
         for (int num : nums) {
-            for (int i = neg; i >=num; i--) {
+            //容量
+            for (int i = t; i >= num; i--) {
                 dp[i] += dp[i - num];
             }
         }
-        return dp[neg];
+        return dp[t];
+
     }
 
     @Test

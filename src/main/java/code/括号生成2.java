@@ -18,6 +18,18 @@ import java.util.List;
  *@create: 2020-10-27 10:31
  */
 public class 括号生成2 {
+    public static void main(String[] args) {
+        int[] k=new  int[1];
+        try {
+            k[0]=1;
+            throw new NullPointerException("1");
+        }catch (Exception e)
+        {k[0]=2;}
+        finally {
+            k[0]=3;
+        }
+        System.out.println(k[0]);
+    }
     public List<String> generateParenthesis(int n) {
         List<String> ans = new ArrayList<String>();
         backtrack(ans, new StringBuilder(), 0, 0, n);

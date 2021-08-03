@@ -6,6 +6,8 @@ package code.滑动窗口;/**
  * @email: wangyuhang_mocas@163.com
  */
 
+import org.junit.Test;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,28 +21,47 @@ public class 最长连续序列 {
     //哈希表
     public int longestConsecutive(int[] nums) {
 
-        //k,v代表当前左右边界,代表滑动窗口的左右数值
+        if (nums.length==0)
+        {
+            return 0;
+        }
+        //左右代表连续序列的左右边界
         Map<Integer, Integer> map = new HashMap<>();
 
-        for (int num : nums) {
-            //初始化左右边界为自身数值
-            map.put(num, num);
-        }
 
-        int res = 0;
+        for (int num:nums)
+        {
+            map.put(num,num);
+        }
+        int res=1;
+
         for (int i = 0; i < nums.length; i++) {
-            //扩增窗口大小
-            int num = nums[i];
-            while (map.containsKey(num + 1)) {
-                num++;
+
+            int current=nums[i];
+            //从最小的那个数开始计算
+            if (!map.containsKey(current-1))
+            {
+                //扩增窗口
+                while (map.containsKey(current+1))
+                {
+                    current++;
+                }
             }
+
             //缩减窗口
-            //当前操作
-            map.put(nums[i], num);
-            res = Math.max(res, num - nums[i] + 1);
+            map.put(nums[i],current);
+            res=Math.max(res,current-nums[i]+1);
         }
         return res;
 
+    }
+
+    @Test
+    public void test()
+    {
+        int[] nums ={100,4,200,1,3,2};
+        int res=longestConsecutive(nums);
+        System.out.println(res);
 
     }
 }

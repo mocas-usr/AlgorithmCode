@@ -15,31 +15,35 @@ import java.util.Stack;
  * @create: 2021-04-15 19:15
  */
 public class 逆波兰表达式求值 {
+
     public int evalRPN(String[] tokens) {
+        Stack<Integer> stack=new Stack<>();
 
-        Stack<Integer> stack = new Stack<>();
+        for (String t:tokens)
+        {
+            if (t.equals("+"))
+            {
+                int num1=stack.pop();
+                int num2=stack.pop();
+                stack.add(num1+num2);
+            }else if (t.equals("-")){
+                int num1=stack.pop();
+                int num2=stack.pop();
+                stack.add(num2-num1);
 
-        for (String t : tokens) {
-            if (t.equals("+")) {
-                int num1 = stack.pop();
-                int num2 = stack.pop();
-                stack.add(num2 + num1);
-            } else if (t.equals("-")) {
-                int num1 = stack.pop();
-                int num2 = stack.pop();
-                stack.add(num2 - num1);
-            } else if (t.equals("*")) {
-
-                int num1 = stack.pop();
-                int num2 = stack.pop();
-                stack.add(num2 * num1);
-            } else if (t.equals("/")) {
-
-                int num1 = stack.pop();
-                int num2 = stack.pop();
-                stack.add(num2 / num1);
-            } else {
-                int num = Integer.valueOf(t);
+            }else if (t.equals("*"))
+            {
+                int num1=stack.pop();
+                int num2=stack.pop();
+                stack.add(num2*num1);
+            }else if (t.equals("/"))
+            {
+                int num1=stack.pop();
+                int num2=stack.pop();
+                stack.add(num2/num1);
+            }else
+            {
+                int num=Integer.parseInt(t);
                 stack.add(num);
             }
         }

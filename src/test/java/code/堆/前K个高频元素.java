@@ -20,15 +20,14 @@ public class 前K个高频元素 {
 
     public int[] topKFrequent(int[] nums, int k) {
 
-        if (nums == null || nums.length == 0) {
-            return null;
-        }
-        //计算频率
         Map<Integer, Integer> map = new HashMap<>();
+
+
+        //数值，频率
         for (int num : nums) {
             map.put(num, map.getOrDefault(num, 0) + 1);
-
         }
+
         //大顶堆
         Queue<Map.Entry<Integer, Integer>> queue = new PriorityQueue<>
                 (((o1, o2) -> (o2.getValue().compareTo(o1.getValue()))));
@@ -38,12 +37,15 @@ public class 前K个高频元素 {
             queue.add(entry);
         }
 
-        int[] res = new int[k];
 
-        for (int i = 0; i < k; i++) {
-            res[i] = queue.poll().getKey();
+        int[] res = new int[k];
+        for (int i=0;i<k;i++)
+        {
+            res[i]=queue.poll().getKey();
         }
         return res;
+
+
     }
 
     @Test

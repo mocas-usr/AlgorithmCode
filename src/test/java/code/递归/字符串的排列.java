@@ -11,6 +11,7 @@ import org.junit.Test;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @program: AlgorithmCode
@@ -25,49 +26,42 @@ public class 字符串的排列 {
     public String[] permutation(String s) {
 
         chars = s.toCharArray();
-        int n = s.length();
+
         dfs(0);
         String[] ans=new String[res.size()];
-
         for (int i=0;i<res.size();i++)
         {
             ans[i]=res.get(i);
         }
         return ans;
-
     }
 
-
     public void dfs(int index) {
-        //终止条件
-        if (index == chars.length - 1) {
+        if (index == chars.length) {
             res.add(String.valueOf(chars));
             return;
         }
 
-        //for 循环列表
-        HashSet<Character> set = new HashSet<>();
+        Set<Character> set = new HashSet<>();
+        //for循环列表
         for (int i = index; i < chars.length; i++) {
-            //
-            //当前选择
-            if (set.contains(chars[i]))
-            {
+            if (set.contains(chars[i])) {
                 continue;
             }
             set.add(chars[i]);
-            swap(index, i);
-            //下一路径
+            //当前选择
+            swap(i, index);
             dfs(index + 1);
             //恢复现场
-            swap(index, i);
-        }
+            swap(i, index);
 
+        }
     }
 
     public void swap(int i, int j) {
-        char ch = chars[i];
+        char temp = chars[i];
         chars[i] = chars[j];
-        chars[j] = ch;
+        chars[j] = temp;
     }
 
     @Test

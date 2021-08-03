@@ -6,6 +6,8 @@ package code.字符串;/**
  * @email: wangyuhang_mocas@163.com
  */
 
+import org.junit.Test;
+
 /**
  * @program: AlgorithmCode
  * @description:
@@ -20,39 +22,46 @@ public class 最长回文子串 {
         if (s.length() == 0) {
             return "";
         }
-        int n = s.length();
-        //dp[i][j]代表是s[i]到s[j]是否是回文串
-        boolean[][] dp = new boolean[n][n];
+
         char[] str = s.toCharArray();
-        int len = 0;
-        int max = 0;
-        int start = -1;
-        for (int i = 0; i < n; i++)
+
+        int n = s.length();
+        int maxLen=1;
+        int start=0;
+        //dp[i][j]代表s[i]到s[j]是否是回文串
+        boolean[][] dp = new boolean[n][n];
+        for (int i = 0; i < s.length(); i++) {
             for (int j = 0; j < i; j++) {
-                //判断(j,i)的回文
-                if (str[i] != str[j]) {
-                    dp[j][i] = false;
-                } else {
-                    if (j - i < 3) {
-                        dp[j][i] = true;
-                    } else {
-                        dp[j][i] = dp[j + 1][i - 1];
-                    }
-                    if (dp[j][i]) {
-                        len = i-j + 1;
-                        if (len > max) {
-                            max = len;
-                            start = j;
-                        }
+
+                if (str[i] == str[j]) {
+
+                    if (i-j<3)
+                    {
+                        dp[i][j]=true;
+                    }else
+                    {
+                        dp[i][j]=dp[i-1][j+1];
                     }
 
+
+                } else {
+                    dp[j][i] = false;
                 }
 
+                if (dp[i][j] &&i-j+1>maxLen)
+                {
+                    start=j;
+                    maxLen=Math.max(maxLen,i-j+1);
+                }
             }
+        }
+        return s.substring(start,start+maxLen);
+    }
 
-        String res = s.substring(start, start + len + 1);
-        return res;
-
-
+    @Test
+    public void test()
+    {
+        String res=longestPalindrome("ccc");
+        System.out.println(res);
     }
 }

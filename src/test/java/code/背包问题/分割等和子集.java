@@ -14,29 +14,33 @@ package code.背包问题;/**
  */
 public class 分割等和子集 {
 
+
     public boolean canPartition(int[] nums) {
 
-        int sum = 0;
-        for (int num : nums) {
-            sum += num;
-        };
+        int sum=0;
+
+        for (int num:nums)
+        {
+            sum+=num;
+        }
         if (sum%2!=0)
         {
             return false;
         }
-        int target=sum/2;
-        //dp[i]代表是否能用数值构成
-        int n = nums.length;
-        boolean[] dp = new boolean[target + 1];
 
+        int target=sum/2;
+
+        //背包
+        boolean[] dp=new boolean[target+1];
         dp[0]=true;
-        for (int num : nums) {
-            for (int i =target;i>=num;i--)
+        //背包
+        for (int num:nums)
+        {
+            for (int i=target;i>=num;i--)
             {
-                dp[i]|=dp[i-num];
+                dp[i] |=dp[i-num];
             }
         }
         return dp[target];
-
     }
 }

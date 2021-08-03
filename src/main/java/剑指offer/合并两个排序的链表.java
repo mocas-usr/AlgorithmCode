@@ -13,32 +13,25 @@ package 剑指offer;/**
  * @create: 2021-06-15 11:23
  */
 public class 合并两个排序的链表 {
-    public ListNode Merge(ListNode list1, ListNode list2) {
 
-        ListNode l1 = list1;
-        ListNode l2 = list2;
-        ListNode newHead = new ListNode(-1);
-        ListNode head=newHead;
-        while (l1 != null && l2 != null) {
-            ListNode node;
-            if (l1.val > l2.val) {
-                node = new ListNode(l2.val);
-                l2 = l2.next;
-
-            } else {
-                node = new ListNode(l1.val);
-                l1 = l1.next;
-            }
-            newHead.next = node;
-            newHead=newHead.next;
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        //终止条件
+        if (l1==null)
+        {
+            return l2;
         }
-
-        if (l1 != null) {
-            newHead.next = l1;
+        if (l2==null)
+        {
+            return l1;
         }
-        if (l2 != null) {
-            newHead.next = l2;
+        if (l1.val<l2.val)
+        {
+            l1.next=mergeTwoLists(l1.next,l2);
+            return l1;
+        }else
+        {
+            l2.next=mergeTwoLists(l1,l2.next);
+            return l2;
         }
-        return head.next;
     }
 }

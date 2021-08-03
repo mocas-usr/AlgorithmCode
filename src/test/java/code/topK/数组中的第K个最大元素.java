@@ -20,14 +20,16 @@ import java.util.Queue;
  */
 public class 数组中的第K个最大元素 {
 
-    //
+
     public int findKthLargest(int[] nums, int k) {
         if (nums.length == 0) {
             return -1;
         }
-
-        quickSort(nums, 0, nums.length - 1, k-1);
+        //k代表的是
+        quickSort(nums, 0,nums.length-1,k-1);
         return nums[k-1];
+
+
     }
 
     public void quickSort(int[] nums, int left, int right, int k) {
@@ -36,10 +38,9 @@ public class 数组中的第K个最大元素 {
         }
 
         int stand = partion(nums, left, right);
-//        quickSort(nums, left, stand-1, k);
-//        quickSort(nums, stand + 1, right, k);
+
         if (stand > k) {
-            quickSort(nums, left, stand-1, k);
+            quickSort(nums, left, stand - 1, k);
         } else if (stand < k) {
             quickSort(nums, stand + 1, right, k);
         } else {
@@ -62,13 +63,13 @@ public class 数组中的第K个最大元素 {
                 swap(nums, left, right);
             }
         }
-        //
+        //left==right
         swap(nums, left, index);
         return left;
-
     }
 
     public void swap(int[] nums, int i, int j) {
+
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
