@@ -8,6 +8,7 @@ package code.递归;/**
 
 import org.junit.Test;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,6 +27,7 @@ public class 字符串的排列 {
     public String[] permutation(String s) {
 
         chars = s.toCharArray();
+        Collections.sort(res);
 
         dfs(0);
         String[] ans=new String[res.size()];
